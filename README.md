@@ -1,17 +1,17 @@
 # Mindlift
 ## Design Document
-Authors: Yash Bheke, Abhishek Badola, Kanchan Joshi, Deepika Srivastava, Vaishnovi Palaparthy
+**Authors**: Yash Bheke, Abhishek Badola, Kanchan Joshi, Deepika Srivastava, Vaishnovi Palaparthy
 
 ## Introduction
 In today's fast-paced world, self-help literature provides valuable insights and tools for personal growth. Our Self-Help Books website aims to be a comprehensive platform where users can explore, engage with, and read reviews of self-help books. The website will feature:
-- •	A vast selection of self-help books across various categories.
-- •	Detailed book information and user reviews to assist in making informed decisions.
-- •	Options for purchasing books through a third-party website.
-- •	Integrations with YouTube for video content related to self-help topics.
-- •	Robust user account management to enhance user experience and personalization.
+- A vast selection of self-help books across various categories.
+- Detailed book information and user reviews to assist in making informed decisions.
+- Options for purchasing books through a third-party website.
+- Integrations with YouTube for video content related to self-help topics.
+- Robust user account management to enhance user experience and personalization.
 
 ## Logo
-![Mindlift Logo](Mindlift/MINdLIFT (1).png)
+![Mindlift Logo](/Mindlift/MINdLIFT (1).png)
 The Self-Help Bookstore logo features an open book with a glowing light bulb above it, symbolizing knowledge and inspiration, set against a calming background.
 
 ## Data Feeds
