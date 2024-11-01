@@ -11,12 +11,13 @@ In today's fast-paced world, self-help literature provides valuable insights and
 - Robust user account management to enhance user experience and personalization.
 
 ## Logo
-![Mindlift Logo](/Mindlift/MINdLIFT (1).png)
+![MINdLIFT (1) (1)](https://github.com/user-attachments/assets/785eba9b-918b-4da4-aea7-1a9bb2c285b8)
+
 The Self-Help Bookstore logo features an open book with a glowing light bulb above it, symbolizing knowledge and inspiration, set against a calming background.
 
 ## Data Feeds
--	**OpenLibrary API**: [For accessing book data, reviews, and ratings.] (https://openlibrary.org/search.json?q=atomic+habits)
-- **YouTube API**: [To pull in relevant video content related to self-help topics and featured authors.] (https://www.youtube.com/watch?v=2xzIc-sY-cA&%26api-key%3D76363c9e70bc401bac1e6ad88b13bd1d=AIzaSyAOXJ2dt6Zzc1sRMjG0NeB6lwVDtpcQ-_E)
+-	**OpenLibrary API**: [For accessing book data, reviews, and ratings.](https://openlibrary.org/search.json?q=atomic+habits)
+- **YouTube API**: [To pull in relevant video content related to self-help topics and featured authors.](https://www.youtube.com/watch?v=2xzIc-sY-cA&%26api-key%3D76363c9e70bc401bac1e6ad88b13bd1d=AIzaSyAOXJ2dt6Zzc1sRMjG0NeB6lwVDtpcQ-_E)
 - **E-commerce Platform**: For managing book purchases and transactions.
 - **User Database**: To manage user accounts and preferences.
  
