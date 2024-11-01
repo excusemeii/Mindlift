@@ -21,14 +21,14 @@ The Self-Help Bookstore logo features an open book with a glowing light bulb abo
 - •	User Database: To manage user accounts and preferences.
  
 ## Functional Requirements
-**Requirement 100.0: Search for Books**
+### **Requirement 100.0: Search for Books**
 Scenario: As a user interested in self-help literature, I want to search for books by title, author, or keywords, so that I can easily find books that resonate with my personal journey.
 ### Dependencies
 -	Book data is available and accessible via OpenLibrary API.
 - The search functionality must be user-friendly.
 Assumptions
 - Book titles and authors are accurately listed in the database.
-***Examples 1.1***
+#### ***Examples 1.1***
 Given a feed of book data is available
 When I search for " Brené Brown"
 Then I should receive results that include:
@@ -37,13 +37,13 @@ Then I should receive results that include:
 - Genre: Personal Development
 - Rating: 4.06 stars
 - Reviews Count: 907
-**Requirement 101.0: Viewing Book Details**
+### **Requirement 101.0: Viewing Book Details**
 Scenario As a user, I want to view detailed information about a book, including its genre, author details, and ratings, so that I can make informed reading choices.
 Dependencies
 - Book data is accessible via the OpenLibrary API.
 Assumptions
 - Users will be interested in comprehensive details before making a purchase.
-****Examples 1.1***
+#### ***Examples 1.1***
 Given I select a book titled "Who Moved My Cheese"
 When I view the book details page
 Then I should see:
@@ -53,44 +53,44 @@ Then I should see:
 - Average Rating: 3.8 stars
 - Reviews Count: 73
 
-**Requirement 102.0: YouTube Integrations**
+### **Requirement 102.0: YouTube Integrations**
 Scenario: As a user, I want to access video content related to self-help and physical fitness books and topics, so that I can enhance my understanding through multimedia resources.
 Dependencies
 - Access to the YouTube API for video content.
 Assumptions
 - Users enjoy consuming content in various formats.
-***Examples 1.1***
+#### ***Examples 1.1***
 Given I am on the details page for "The Gifts of Imperfection"
 When I scroll to the YouTube section
 Then I should see embedded videos, including:
 - Video Title: "Brené Brown: The Power of Vulnerability"
 - Duration: 20 minutes
-**Requirement 103.0: User Account Management**
+### **Requirement 103.0: User Account Management**
 Scenario As a user, I want to manage my account settings, including my profile information, reading history, and preferences, so that I can personalize my experience.
 Dependencies
 - A secure user database for managing account information.
 Assumptions
 - Users value the ability to customize their experience.
-***Examples 1.1***
+#### ***Examples 1.1***
 Given I am logged into my account
 When I navigate to the Account Settings page
 Then I should see options to:
 - Edit Profile: Update my name, email, and password.
 - Reading Preferences: Select genres of interest.
 - Reading History: View and manage my past readings.
-**Requirement 104.0: User Reviews**
+### **Requirement 104.0: User Reviews**
 Scenario As a user, I want to write and read reviews for books, so that I can share my insights and benefit from the experiences of others.
 Dependencies
 - Users must be logged in to submit reviews.
 Assumptions
 - Users are willing to engage with the community through reviews.
-***Examples 1.1***
+#### ***Examples 1.1***
 Given I am logged into my account
 When I read "Atomic Habits"
 Then I should be able to submit an anonymous review that includes:
 - Rating: 5 stars
 - Comment: “Incredibly actionable advice!”
-***Examples 1.2***
+#### ***Examples 1.2***
 Given I am viewing the book details for "The Subtle Art of Not Giving a F*ck"
 When I scroll to the reviews section
 Then I should see a list of user reviews, including:
