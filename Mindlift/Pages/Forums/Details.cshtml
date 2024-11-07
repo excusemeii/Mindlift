@@ -1,25 +1,75 @@
 ﻿@page
 @model Mindlift.Pages.Forums.DetailsModel
 
+@page "{id:int}"
+@model Mindlift.Models.Forum
+
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Forum Details";
+    var forum = Model;
 }
 
-<h1>Details</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .forum-details {
+            margin: 20px;
+        }
+        .user-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .user-item {
+            background-color: #f4f4f4;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .user-item h4 {
+            margin: 0;
+        }
+        .user-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
 
-<div>
-    <h4>Forum</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Forum.ForumName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Forum.ForumName)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Forum.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+    <h1>@forum.ForumName</h1>
+
+    <div class="forum-details">
+        <h3>Users in this forum:</h3>
+        <ul class="user-list">
+            @if (forum.Users != null && forum.Users.Any())
+            {
+                foreach (var user in forum.Users)
+                {
+                    <li class="user-item">
+                        <h4>@user.Username</h4>
+                        <p>Email: @user.Email</p>
+                        <p>Joined: @user.JoinDate?.ToString("MMMM dd, yyyy")</p>
+                    </li>
+                }
+            }
+            else
+            {
+                <li>No users yet!</li>
+            }
+        </ul>
+    </div>
+
+    <a href="@Url.Page("ForumList")">
+        <i class="fas fa-arrow-left"></i> Back to Forum List
+    </a>
+
+</body>
+</html>
+
