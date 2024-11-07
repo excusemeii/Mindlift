@@ -1,10 +1,68 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Welcome to BookLift - Your Self-Help Book Hub";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to BookLift</h1>
+    <p class="lead">Discover, explore, and grow with the best self-help books.</p>
+
+    <!-- Search bar -->
+    <form class="form-inline justify-content-center my-4">
+        <div class="input-group input-group-lg w-50">
+            <input type="text" class="form-control" placeholder="Search for books..." id="searchInput" />
+            <button class="btn btn-primary" type="submit">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </div>
+    </form>
 </div>
+
+<!-- Book Recommendations Section -->
+<div class="container my-5">
+    <h2 class="text-center">Recommended Books for You</h2>
+    <div class="row">
+        <!-- Example Book Item -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="https://via.placeholder.com/150" alt="Book cover" />
+                <div class="card-body">
+                    <h5 class="card-title">The Power of Habit</h5>
+                    <p class="card-text">Learn how habits are formed and how to change them for better personal success.</p>
+                    <a href="#" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+        <!-- Repeat similar blocks for other recommendations -->
+    </div>
+</div>
+
+<!-- Bestsellers Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center">Bestsellers</h2>
+        <div class="row">
+            <!-- Example Bestseller -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img class="card-img-top" src="https://via.placeholder.com/150" alt="Bestseller cover" />
+                    <div class="card-body">
+                        <h5 class="card-title">Atomic Habits</h5>
+                        <p class="card-text">A proven framework for achieving your goals through small habits and decisions.</p>
+                        <a href="#" class="btn btn-warning">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat similar blocks for other bestsellers -->
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action Section -->
+<div class="container text-center my-5">
+    <h3>Ready to transform your life?</h3>
+    <p>Start reading today and unlock your potential with the best self-help books.</p>
+    <a href="/Books" class="btn btn-success btn-lg">Browse All Books</a>
+</div>
+
