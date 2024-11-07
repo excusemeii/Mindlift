@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Mindlift.Models;
 
 namespace Mindlift.Data
 {
@@ -9,5 +10,6 @@ namespace Mindlift.Data
             : base(options)
         {
         }
+        public DbSet<Mindlift.Models.Review> Review { get; set; } = default!;
     }
 }
