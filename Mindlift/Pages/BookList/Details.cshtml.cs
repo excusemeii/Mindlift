@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Mindlift.Data;
 using Mindlift.Models;
 
-namespace Mindlift.Pages.Forums
+namespace Mindlift.Pages.BookList
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Mindlift.Pages.Forums
             _context = context;
         }
 
-        public Forum Forum { get; set; } = default!;
+        public Book Book { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,14 +28,14 @@ namespace Mindlift.Pages.Forums
                 return NotFound();
             }
 
-            var forum = await _context.Forum.FirstOrDefaultAsync(m => m.Id == id);
-            if (forum == null)
+            var book = await _context.Book.FirstOrDefaultAsync(m => m.BookId == id);
+            if (book == null)
             {
                 return NotFound();
             }
             else
             {
-                Forum = forum;
+                Book = book;
             }
             return Page();
         }

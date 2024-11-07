@@ -12,5 +12,6 @@ namespace Mindlift.Data
         }
         public DbSet<Mindlift.Models.Forum> Forum { get; set; } = default!;
         public DbSet<Mindlift.Models.User> User { get; set; } = default!;
+        public DbSet<Mindlift.Models.Book> Book { get; set; } = default!;
     }
 }
