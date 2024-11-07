@@ -3,55 +3,164 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BookLift</title>
+    <title>@ViewData["Title"] - Mindlift</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mindlift.styles.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" /> <!-- FontAwesome for icons -->
+    <style>
+        /* Sidebar Custom Styles */
+        .sidebar {
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: #343a40;
+            padding-top: 20px;
+            z-index: 1050;
+            transition: transform 0.3s ease-in-out;
+        }
+
+            .sidebar .navbar-brand {
+                color: #ffffff;
+                font-size: 24px;
+                font-weight: bold;
+                padding: 20px;
+                display: block;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .sidebar .nav-item {
+                border-bottom: 1px solid #495057;
+            }
+
+                .sidebar .nav-item:last-child {
+                    border-bottom: none;
+                }
+
+            .sidebar .nav-link {
+                color: #ffffff;
+                padding: 15px 20px;
+                font-size: 18px;
+                display: block;
+                transition: background-color 0.3s ease, padding-left 0.3s ease;
+            }
+
+                .sidebar .nav-link:hover,
+                .sidebar .nav-item.active .nav-link {
+                    background-color: #495057;
+                    padding-left: 30px; /* Slide-in effect */
+                }
+
+            .sidebar .nav-item a i {
+                margin-right: 15px;
+                font-size: 20px;
+            }
+
+            .sidebar .navbar-toggler {
+                display: none;
+            }
+
+        .content-wrapper {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Toggle Button for small screens */
+        .btn-sidebar-toggle {
+            display: none;
+        }
+
+        /* Tablet and mobile adjustments via JavaScript */
+        /* Initial Sidebar state - hidden on mobile */
+        .sidebar.hidden {
+            transform: translateX(-100%); /* Sidebar hidden */
+        }
+
+        .content-wrapper.sidebar-open {
+            margin-left: 0;
+        }
+
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom box-shadow">
-            <div class="container">
-                <a class="navbar-brand" href="/">BookLift</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Books/Recommendations">Recommendations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Books/Bestsellers">Bestsellers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <a class="navbar-brand" href="/">
+            <i class="fas fa-book-open"></i> Mindlift
+        </a>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-home"></i> Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Books/Recommendations">
+                    <i class="fas fa-lightbulb"></i> Recommendations
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Books/Bestsellers">
+                    <i class="fas fa-chart-line"></i> Bestsellers
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Privacy">
+                    <i class="fas fa-shield-alt"></i> Privacy
+                </a>
+            </li>
+        </ul>
+        <partial name="_LoginPartial" />
     </div>
 
-    <footer class="footer text-muted border-top">
-        <div class="container">
-            &copy; 2024 - BookLift - <a href="/Privacy">Privacy</a>
-        </div>
-    </footer>
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <!-- Sidebar Toggle Button for Mobile Screens -->
+                    <button class="btn-sidebar-toggle" id="toggleSidebar">
+                        <i class="fas fa-bars"></i> Menu
+                    </button>
+                </div>
+            </nav>
+        </header>
 
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="footer text-muted border-top">
+            <div class="container">
+                &copy; 2024 - Mindlift - <a href="/Privacy">Privacy</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <!-- Sidebar Toggle Script -->
+    <script>
+        // Sidebar toggle function
+        const sidebar = document.querySelector('.sidebar');
+        const contentWrapper = document.querySelector('.content-wrapper');
+        const toggleButton = document.getElementById('toggleSidebar');
+
+        toggleButton.addEventListener('click', function () {
+            sidebar.classList.toggle('hidden'); // Toggle sidebar visibility
+            contentWrapper.classList.toggle('sidebar-open'); // Adjust content wrapper
+        });
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
