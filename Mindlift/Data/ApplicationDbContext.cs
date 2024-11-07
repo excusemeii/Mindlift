@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Mindlift.Models;
 
 namespace Mindlift.Data
 {
@@ -9,5 +10,7 @@ namespace Mindlift.Data
             : base(options)
         {
         }
+        public DbSet<Mindlift.Models.Forum> Forum { get; set; } = default!;
+        public DbSet<Mindlift.Models.User> User { get; set; } = default!;
     }
 }
