@@ -1,0 +1,72 @@
+﻿@page
+@model Mindlift.Pages.Libraries.IndexModel
+
+@{
+    ViewData["Title"] = "Top 3 Books";
+}
+
+<h1>Top 3 Books</h1>
+
+<form method="get">
+    <div class="form-group">
+        <label for="searchQuery">Search for Books:</label>
+        <input type="text" id="searchQuery" name="searchQuery" class="form-control" placeholder="Enter a book title, author, etc." value="@Request.Query["searchQuery"]" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (Model.ExternalBooks != null && Model.ExternalBooks.Any())
+{
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Book Cover</th>
+                <th>Title</th>
+                <th>Author(s)</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model.ExternalBooks)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(book.ISBN))
+                        {
+                            <img src="https://covers.openlibrary.org/b/isbn/@book.ISBN-L.jpg" alt="Book Cover" width="100" />
+                        }
+                        else
+                        {
+                            <span>No cover available</span>
+                        }
+                    </td>
+                    <td>@book.Title</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(book.Author))
+                        {
+                            @book.Author
+                        }
+                        else
+                        {
+                            <span>Unknown Author</span>
+                        }
+                    </td>
+                    <td>
+                        @if (book.RatingsAverage.HasValue)
+                        {
+                            @book.RatingsAverage.Value.ToString("N1")
+                        }
+                        else
+                        {
+                            <span>No ratings</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No books found. Try a different search.</p>
+}
