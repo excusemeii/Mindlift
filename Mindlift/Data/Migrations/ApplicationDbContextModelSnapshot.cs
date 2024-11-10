@@ -271,22 +271,6 @@ namespace Mindlift.Data.Migrations
                     b.ToTable("Book");
                 });
 
-            modelBuilder.Entity("Mindlift.Models.Library", b =>
-                {
-                    b.Property<int>("LibraryID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LibraryID"));
-
-                    b.Property<long>("NumFound")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("LibraryID");
-
-                    b.ToTable("Library");
-                });
-
             modelBuilder.Entity("Mindlift.Models.Review", b =>
                 {
                     b.Property<int>("ReviewId")

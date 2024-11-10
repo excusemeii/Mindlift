@@ -11,6 +11,5 @@ namespace Mindlift.Data
         {
         }
         public DbSet<Mindlift.Models.Review> Review { get; set; } = default!;
-        public DbSet<Mindlift.Models.Library> Library { get; set; } = default!;
     }
 }
