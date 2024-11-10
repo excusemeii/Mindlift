@@ -10,9 +10,7 @@ namespace Mindlift.Data
             : base(options)
         {
         }
-        public DbSet<Mindlift.Models.Forum> Forum { get; set; } = default!;
-        public DbSet<Mindlift.Models.User> User { get; set; } = default!;
-        public DbSet<Mindlift.Models.Book> Book { get; set; } = default!;
-        public DbSet<Mindlift.Models.VideoContent> VideoContent { get; set; } = default!;
+        public DbSet<Mindlift.Models.Review> Review { get; set; } = default!;
+        public DbSet<Mindlift.Models.Library> Library { get; set; } = default!;
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mindlift.Data;
 
@@ -11,9 +12,11 @@ using Mindlift.Data;
 namespace Mindlift.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241107051322_reviews1")]
+    partial class reviews1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,8 +165,6 @@ namespace Mindlift.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
 
@@ -271,22 +272,6 @@ namespace Mindlift.Data.Migrations
                     b.ToTable("Book");
                 });
 
-            modelBuilder.Entity("Mindlift.Models.Library", b =>
-                {
-                    b.Property<int>("LibraryID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LibraryID"));
-
-                    b.Property<long>("NumFound")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("LibraryID");
-
-                    b.ToTable("Library");
-                });
-
             modelBuilder.Entity("Mindlift.Models.Review", b =>
                 {
                     b.Property<int>("ReviewId")
@@ -375,18 +360,6 @@ namespace Mindlift.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Mindlift.Models.User", b =>
-                {
-                    b.HasOne("Mindlift.Models.Forum", null)
-                        .WithMany("Users")
-                        .HasForeignKey("ForumId");
-                });
-
-            modelBuilder.Entity("Mindlift.Models.Forum", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }
