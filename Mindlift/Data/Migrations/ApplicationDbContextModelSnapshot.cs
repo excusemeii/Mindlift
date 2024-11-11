@@ -22,21 +22,6 @@ namespace Mindlift.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BookReview", b =>
-                {
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReviewsReviewId")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookId", "ReviewsReviewId");
-
-                    b.HasIndex("ReviewsReviewId");
-
-                    b.ToTable("BookReview");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -241,6 +226,7 @@ namespace Mindlift.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("Mindlift.Models.Book", b =>
                 {
                     b.Property<int>("BookId")
@@ -308,6 +294,49 @@ namespace Mindlift.Data.Migrations
                         .HasForeignKey("ReviewsReviewId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+=======
+            modelBuilder.Entity("Mindlift.Models.Forum", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ForumName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Forum");
+                });
+
+            modelBuilder.Entity("Mindlift.Models.User", b =>
+                {
+                    b.Property<int>("UserID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ForumId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("JoinDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserID");
+
+                    b.HasIndex("ForumId");
+
+                    b.ToTable("User");
+>>>>>>> parent of 0a07524 (chatbot integration)
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
