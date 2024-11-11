@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mindlift.Data;
 
@@ -11,9 +12,11 @@ using Mindlift.Data;
 namespace Mindlift.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241110020220_youtube")]
+    partial class youtube
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -307,38 +310,6 @@ namespace Mindlift.Data.Migrations
                     b.HasKey("ReviewId");
 
                     b.ToTable("Review");
-                });
-
-            modelBuilder.Entity("Mindlift.Models.YouTubeVideo", b =>
-                {
-                    b.Property<string>("VideoId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ChannelTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("LikeCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ThumbnailUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ViewCount")
-                        .HasColumnType("int");
-
-                    b.HasKey("VideoId");
-
-                    b.ToTable("YoutubeVideos");
                 });
 
             modelBuilder.Entity("BookReview", b =>

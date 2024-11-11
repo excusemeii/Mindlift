@@ -1,0 +1,40 @@
+﻿@page
+@model Mindlift.Pages.Videos.IndexModel
+
+@{
+    ViewData["Title"] = "Top YouTube Videos";
+}
+
+<h1>Top Self-Help Videos</h1>
+
+<form method="get">
+    <div class="form-group">
+        <label for="searchQuery">Search for Videos:</label>
+        <input type="text" id="searchQuery" name="searchQuery" class="form-control" placeholder="Enter a topic" value="@Request.Query["searchQuery"]" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+@if (Model.ExternalVideos != null && Model.ExternalVideos.Any())
+{
+    <div class="row mt-3">
+        @foreach (var video in Model.ExternalVideos)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@video.ThumbnailUrl" class="card-img-top" alt="Video Thumbnail">
+                    <div class="card-body">
+                        <h5 class="card-title">@video.Title</h5>
+                        <p class="card-text">@video.Description</p>
+                        <p><strong>Channel:</strong> @video.ChannelTitle</p>
+                        <a href="https://www.youtube.com/watch?v=@video.VideoId" target="_blank" class="btn btn-success">Watch Video</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No videos found. Try a different search.</p>
+}
