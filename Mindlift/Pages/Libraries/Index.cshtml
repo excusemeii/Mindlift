@@ -5,68 +5,75 @@
     ViewData["Title"] = "Top 3 Books";
 }
 
-<h1>Top 3 Books</h1>
+<!-- Page Title -->
+<h1 class="text-center my-4" style="font-family: 'Arial', sans-serif; color: #333; font-weight: bold;">
+    @if (!string.IsNullOrWhiteSpace(Request.Query["searchQuery"]))
+    {
+        <span>Results for "@Request.Query["searchQuery"]"</span>
+    }
+    else
+    {
+        <span>Top Books</span>
+    }
+</h1>
 
-<form method="get">
-    <div class="form-group">
-        <label for="searchQuery">Search for Books:</label>
-        <input type="text" id="searchQuery" name="searchQuery" class="form-control" placeholder="Enter a book title, author, etc." value="@Request.Query["searchQuery"]" />
-    </div>
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
+<!-- Search Form -->
+<div class="container mb-4">
+    <form method="get" class="d-flex justify-content-center">
+        <div class="input-group w-75">
+            <input type="text" id="searchQuery" name="searchQuery" class="form-control" placeholder="Enter a book title, author, etc." value="@Request.Query["searchQuery"]" />
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+        </div>
+    </form>
+</div>
 
-@if (Model.ExternalBooks != null && Model.ExternalBooks.Any())
-{
-    <table class="table mt-3">
-        <thead>
-            <tr>
-                <th>Book Cover</th>
-                <th>Title</th>
-                <th>Author(s)</th>
-                <th>Rating</th>
-            </tr>
-        </thead>
-        <tbody>
+<!-- Book Cards Layout -->
+<div class="container">
+    @if (Model.ExternalBooks != null && Model.ExternalBooks.Any())
+    {
+        <div class="row mt-3">
             @foreach (var book in Model.ExternalBooks)
             {
-                <tr>
-                    <td>
-                        @if (!string.IsNullOrEmpty(book.ISBN))
-                        {
-                            <img src="https://covers.openlibrary.org/b/isbn/@book.ISBN-L.jpg" alt="Book Cover" width="100" />
-                        }
-                        else
-                        {
-                            <span>No cover available</span>
-                        }
-                    </td>
-                    <td>@book.Title</td>
-                    <td>
-                        @if (!string.IsNullOrEmpty(book.Author))
-                        {
-                            @book.Author
-                        }
-                        else
-                        {
-                            <span>Unknown Author</span>
-                        }
-                    </td>
-                    <td>
-                        @if (book.RatingsAverage.HasValue)
-                        {
-                            @book.RatingsAverage.Value.ToString("N1")
-                        }
-                        else
-                        {
-                            <span>No ratings</span>
-                        }
-                    </td>
-                </tr>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card shadow-lg border-light rounded h-100">
+                        <!-- Book Cover -->
+                        <div class="card-img-top" style="height: 250px; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center;">
+                            @if (!string.IsNullOrEmpty(book.ISBN))
+                            {
+                                <img src="https://covers.openlibrary.org/b/isbn/@book.ISBN-L.jpg" alt="Book Cover" style="max-height: 100%; max-width: 100%; object-fit: contain;" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">No cover available</span>
+                            }
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 1.2rem; color: #333; font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">@book.Title</h5>
+                            <p class="card-text text-muted" style="font-size: 1rem;">@book.Author ?? "Unknown Author"</p>
+                            <p class="text-small" style="font-size: 0.9rem; color: #777;">
+                                <strong>Rating:</strong>
+                                @if (book.RatingsAverage.HasValue)
+                                {
+                                    @book.RatingsAverage.Value.ToString("N1")
+                                }
+                                else
+                                {
+                                    <span>No ratings</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
             }
-        </tbody>
-    </table>
-}
-else
-{
-    <p>No books found. Try a different search.</p>
-}
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mt-4 text-center" role="alert">
+            No books found. Try a different search.
+        </div>
+    }
+</div>
+
+<!-- Add necessary scripts for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
