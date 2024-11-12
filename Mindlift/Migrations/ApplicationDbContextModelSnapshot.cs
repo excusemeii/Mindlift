@@ -3,20 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mindlift.Data;
 
 #nullable disable
 
-namespace Mindlift.Data.Migrations
+namespace Mindlift.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241110020220_youtube")]
-    partial class youtube
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -272,6 +269,28 @@ namespace Mindlift.Data.Migrations
                     b.ToTable("Book");
                 });
 
+            modelBuilder.Entity("Mindlift.Models.Forum", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Forums");
+                });
+
             modelBuilder.Entity("Mindlift.Models.Library", b =>
                 {
                     b.Property<int>("LibraryID")
@@ -286,6 +305,57 @@ namespace Mindlift.Data.Migrations
                     b.HasKey("LibraryID");
 
                     b.ToTable("Library");
+                });
+
+            modelBuilder.Entity("Mindlift.Models.Post", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ForumId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ForumId");
+
+                    b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("Mindlift.Models.PostReply", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("PostReplies");
                 });
 
             modelBuilder.Entity("Mindlift.Models.Review", b =>
@@ -310,6 +380,38 @@ namespace Mindlift.Data.Migrations
                     b.HasKey("ReviewId");
 
                     b.ToTable("Review");
+                });
+
+            modelBuilder.Entity("Mindlift.Models.YouTubeVideo", b =>
+                {
+                    b.Property<string>("VideoId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ChannelTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LikeCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ThumbnailUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("VideoId");
+
+                    b.ToTable("YoutubeVideos");
                 });
 
             modelBuilder.Entity("BookReview", b =>
@@ -376,6 +478,34 @@ namespace Mindlift.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Mindlift.Models.Post", b =>
+                {
+                    b.HasOne("Mindlift.Models.Forum", "Forum")
+                        .WithMany("Posts")
+                        .HasForeignKey("ForumId");
+
+                    b.Navigation("Forum");
+                });
+
+            modelBuilder.Entity("Mindlift.Models.PostReply", b =>
+                {
+                    b.HasOne("Mindlift.Models.Post", "Post")
+                        .WithMany("Replies")
+                        .HasForeignKey("PostId");
+
+                    b.Navigation("Post");
+                });
+
+            modelBuilder.Entity("Mindlift.Models.Forum", b =>
+                {
+                    b.Navigation("Posts");
+                });
+
+            modelBuilder.Entity("Mindlift.Models.Post", b =>
+                {
+                    b.Navigation("Replies");
                 });
 #pragma warning restore 612, 618
         }

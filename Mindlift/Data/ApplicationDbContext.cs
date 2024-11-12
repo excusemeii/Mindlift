@@ -14,6 +14,9 @@ namespace Mindlift.Data
         public DbSet<Mindlift.Models.Library> Library { get; set; } = default!;
 
         public DbSet<Mindlift.Models.YouTubeVideo> YoutubeVideos { get; set; } = default!;
+        public DbSet<Mindlift.Models.Forum> Forums { get; set; } = default!;
+        public DbSet<Mindlift.Models.PostReply> PostReplies { get; set; } = default!;
+        public DbSet<Mindlift.Models.Post> Posts { get; set; } = default!;
 
         //public DbSet<Mindlift.Models.YouTubeApiService> YouTubeApiService { get; set; } = default!;
     }

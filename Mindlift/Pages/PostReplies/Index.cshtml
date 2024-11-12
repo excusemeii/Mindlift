@@ -1,0 +1,39 @@
+﻿@page
+@model Mindlift.Pages.PostReplies.IndexModel
+
+@{
+    ViewData["Title"] = "Replies";
+}
+
+<h2>Replies to @Model.Post.Title</h2>
+
+<p>
+    <a asp-page="./Create" asp-route-postId="@Model.Post.Id">Create New Reply</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Content</th>
+            <th>Created</th>
+            <th></th>
+        </tr>
+    </thead>
+    <a href="c:\users\visha\source\repos\mindlift\mindlift\pages\postreplies\index.cshtml">c:\users\visha\source\repos\mindlift\mindlift\pages\postreplies\index.cshtml</a>
+    <a href="c:\users\visha\source\repos\mindlift\mindlift\pages\postreplies\index.cshtml.cs">c:\users\visha\source\repos\mindlift\mindlift\pages\postreplies\index.cshtml.cs</a>
+    <tbody>
+        @foreach (var reply in Model.Replies)
+        {
+            <tr>
+                <td>@reply.Content</td>
+                <td>@reply.Created</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@reply.Id" asp-route-postId="@Model.Post.Id">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@reply.Id" asp-route-postId="@Model.Post.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<a asp-page="../Posts/Index" asp-route-forumId="@Model.ForumId">Back to Posts</a>

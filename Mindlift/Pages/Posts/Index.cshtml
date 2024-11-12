@@ -1,0 +1,36 @@
+﻿@page "{forumId:int}"
+@model Mindlift.Pages.Posts.IndexModel
+
+@{
+    ViewData["Title"] = "Posts";
+}
+
+<h2>Posts  in @Model.Forum.Title</h2>
+
+<p>
+    <a asp-page="Create" asp-route-forumId="@Model.Forum.Id">Create New Post</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Created</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model.Posts)
+        {
+            <tr>
+                <td>@post.Title</td>
+                <td>@post.Created</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@post.Id" asp-route-forumId="@Model.Forum.Id">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@post.Id" asp-route-forumId="@Model.Forum.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="/Forums/Index">Back to Posts</a>
