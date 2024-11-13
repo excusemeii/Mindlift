@@ -7,7 +7,7 @@ namespace Mindlift.Models
         public class Forum
         {
             public int Id { get; set; }
-            public string? ForumName { get; set; }
+            public string ForumName { get; set; }
             public List<User>? Users { get; set; } 
 
         }
