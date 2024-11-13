@@ -51,16 +51,26 @@
                             <h5 class="card-title" style="font-size: 1.2rem; color: #333; font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">@book.Title</h5>
                             <p class="card-text text-muted" style="font-size: 1rem;">@book.Author ?? "Unknown Author"</p>
                             <p class="text-small" style="font-size: 0.9rem; color: #777;">
-                                <strong>Rating:</strong>
-                                @if (book.RatingsAverage.HasValue)
-                                {
-                                    @book.RatingsAverage.Value.ToString("N1")
-                                }
-                                else
-                                {
-                                    <span>No ratings</span>
-                                }
-                            </p>
+                              <strong>Rating:</strong>
+                              @if (book.RatingsAverage.HasValue)
+                              {
+                                   var roundedRating = (int)Math.Round(book.RatingsAverage.Value);
+                                   for (int i = 0; i < roundedRating; i++)
+                                   {
+                                       <i class="fas fa-star" style="color: #f39c12;"></i>
+                                   }
+                                   for (int i = roundedRating; i < 5; i++)
+                                   {
+                                       <i class="far fa-star" style="color: #f39c12;"></i>
+                                   }
+                                   <span class="ms-1">(@book.RatingsAverage.Value.ToString("N1"))</span>
+                               }
+                               else
+                               {
+                                   <span>No ratings</span>
+                               }
+                        </p>
+
                         </div>
                     </div>
                 </div>
