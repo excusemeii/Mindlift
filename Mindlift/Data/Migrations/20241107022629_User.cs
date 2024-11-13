@@ -17,8 +17,8 @@ namespace Mindlift.Data.Migrations
                 {
                     BookId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BookTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookTitle = table.Column<string>(type: "nvarchar(225)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(225)", nullable: false),
                     RatingsAvg = table.Column<double>(type: "float", nullable: false),
                     RatingsCount = table.Column<int>(type: "int", nullable: false),
                     PublishedDate = table.Column<DateTime>(type: "datetime2", nullable: false)

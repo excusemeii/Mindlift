@@ -20,7 +20,7 @@ namespace Mindlift.Models
         [DataType(DataType.Date)]
         public DateTime DateAdded { get; set; } 
         
-        public User User { get; set; }       
-        public Book Book { get; set; }        
+        public User? User { get; set; }       
+        public Book? Book { get; set; }        
     }
 }

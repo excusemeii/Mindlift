@@ -28,7 +28,9 @@ namespace Mindlift.Pages.Users
                 return NotFound();
             }
 
-            var user = await _context.User.FirstOrDefaultAsync(m => m.UserId == id);
+            var user = await _context.User
+                .Include(w=>w.Wishlists)
+                .FirstOrDefaultAsync(m => m.UserId == id);
             if (user == null)
             {
                 return NotFound();

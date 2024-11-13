@@ -21,8 +21,8 @@ namespace Mindlift.Pages.WishLists
 
         public IActionResult OnGet()
         {
-        ViewData["BookId"] = new SelectList(_context.Set<Book>(), "BookId", "BookId");
-        ViewData["UserId"] = new SelectList(_context.Set<User>(), "UserId", "Email");
+        ViewData["BookId"] = new SelectList(_context.Set<Book>(), "BookId", "BookTitle");
+        ViewData["UserId"] = new SelectList(_context.Set<User>(), "UserId", "FullName");
             return Page();
         }
 
