@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Mindlift.Data;
-using Mindlift.Models;
 
-namespace Mindlift.Pages.Forums
+namespace Mindlift.Pages.Reading
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +18,7 @@ namespace Mindlift.Pages.Forums
             _context = context;
         }
 
-        public Forum Forum { get; set; } = default!;
+        public ReadingProgress ReadingProgress { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,14 +27,14 @@ namespace Mindlift.Pages.Forums
                 return NotFound();
             }
 
-            var forum = await _context.Forum.FirstOrDefaultAsync(m => m.Id == id);
-            if (forum == null)
+            var readingprogress = await _context.ReadingProgress.FirstOrDefaultAsync(m => m.ReadingId == id);
+            if (readingprogress == null)
             {
                 return NotFound();
             }
             else
             {
-                Forum = forum;
+                ReadingProgress = readingprogress;
             }
             return Page();
         }
