@@ -1,0 +1,23 @@
+﻿@page "{postId:int}/{id:int}"
+@model Mindlift.Pages.PostReplies.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Reply";
+}
+
+<h1>Delete</h1>
+
+<h3>Delete Reply from @Model.Post.Title</h3>
+<div>
+    <h4>@Model.Reply.Content</h4>
+    <hr />
+        
+        <form method="post">
+            @Html.HiddenFor(m => m.Reply.Id)
+            @Html.HiddenFor(m => m.Reply.PostId)
+
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+
+        <a asp-page="./Index" asp-route-postId="@Model.Reply.PostId">Cancel</a>
+</div>

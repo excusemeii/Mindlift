@@ -1,0 +1,71 @@
+﻿@page
+@model Mindlift.Pages.Videos.IndexModel
+
+@{
+    ViewData["Title"] = "Top YouTube Videos";
+}
+
+<!-- Page Title -->
+<h1 class="text-center my-4" style="font-family: 'Arial', sans-serif; color: #333; font-weight: bold;">
+    @if (!string.IsNullOrWhiteSpace(Request.Query["searchQuery"]))
+    {
+        <span>Results for "@Request.Query["searchQuery"]"</span>
+    }
+    else
+    {
+        <span>Top Self-Help Videos</span>
+    }
+</h1>
+
+<!-- Search Form -->
+<div class="container mb-4">
+    <form method="get" class="d-flex justify-content-center">
+        <div class="input-group w-75">
+            <input type="text" id="searchQuery" name="searchQuery" class="form-control" placeholder="Enter a topic" value="@Request.Query["searchQuery"]" aria-label="Search for Videos" aria-describedby="searchButton">
+            <button type="submit" class="btn btn-primary" id="searchButton"><i class="fas fa-search"></i> Search</button>
+        </div>
+    </form>
+</div>
+
+<!-- Video Grid Layout -->
+<div class="container">
+    @if (Model.ExternalVideos != null && Model.ExternalVideos.Any())
+    {
+        <div class="row mt-3">
+            @foreach (var video in Model.ExternalVideos)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card shadow-lg border-light rounded h-100">
+                        <!-- Embed YouTube Video -->
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item"
+                                    src="https://www.youtube.com/embed/@video.VideoId?autoplay=1"
+                                    allow="autoplay; encrypted-media"
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 1.1rem; color: #333; font-weight: bold; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">@video.Title</h5>
+                            <p class="card-text text-muted" style="font-size: 0.9rem;">@video.Description</p>
+                            <p class="text-small" style="font-size: 0.85rem; color: #777;"><strong>Channel:</strong> @video.ChannelTitle</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info mt-4 text-center" role="alert">
+            No videos found. Try a different search.
+        </div>
+    }
+</div>
+
+<!-- Footer -->
+<footer class="text-center mt-4" style="font-size: 14px; color: #aaa;">
+    <p>&copy; 2024 Mindlift. All rights reserved.</p>
+</footer>
+
+<!-- Add necessary scripts for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
