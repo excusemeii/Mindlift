@@ -21,8 +21,11 @@ namespace Mindlift.Pages.Reading
 
         public IActionResult OnGet()
         {
-            // Initialize the ReadingProgress with default values (TotalBooksRead = 1, MilestoneLevel = "Bronze")
-            ReadingProgress = new ReadingProgress();
+            ReadingProgress = new ReadingProgress
+            {
+                TotalBooksRead = 1,
+                MilestoneLevel = "Bronze"
+            };
             return Page();
         }
 
