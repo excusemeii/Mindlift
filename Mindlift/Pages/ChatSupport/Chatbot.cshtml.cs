@@ -13,7 +13,12 @@ namespace Mindlift.Pages.ChatSupport
         public string UserMessage { get; set; }
 
         // Property to hold chatbot's responses
-        public List<string> ChatbotResponses { get; set; } = new List<string>();
+        // public List<string> ChatbotResponses { get; set; } = new List<string>();
+        public List<string> ChatbotResponses
+        {
+            get => TempData["ChatbotResponses"] as List<string> ?? new List<string>();
+            set => TempData["ChatbotResponses"] = value;
+        }
 
         // Inject ChatGPTClient via constructor
         private readonly ChatGPTClient _chatGPTClient;
