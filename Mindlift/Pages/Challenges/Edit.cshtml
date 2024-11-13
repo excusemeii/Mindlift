@@ -1,0 +1,95 @@
+﻿@page
+@model Mindlift.Pages.Challenges.EditModel
+
+@{
+    ViewData["Title"] = "Edit Challenge";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center text-primary mb-4">Edit Challenge</h1>
+
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Challenge Details</h4>
+            <hr />
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <input type="hidden" asp-for="Challenge.Id" />
+
+                <!-- Challenge Name (Grayed out if the challenge is completed) -->
+                <div class="form-group">
+                    <label asp-for="Challenge.Name" class="control-label">Challenge Name</label>
+                    <input asp-for="Challenge.Name" class="form-control" placeholder="Enter challenge name" readonly />
+                    <span asp-validation-for="Challenge.Name" class="text-danger"></span>
+                </div>
+
+                <!-- Theme (Grayed out if the challenge is completed) -->
+                <div class="form-group">
+                    <label asp-for="Challenge.Theme" class="control-label">Theme</label>
+                    <input asp-for="Challenge.Theme" class="form-control" placeholder="Enter theme" readonly />
+                    <span asp-validation-for="Challenge.Theme" class="text-danger"></span>
+                </div>
+
+                <!-- Book Title (Grayed out if the challenge is completed) -->
+                <div class="form-group">
+                    <label asp-for="Challenge.BookTitle" class="control-label">Book Title</label>
+                    <input asp-for="Challenge.BookTitle" class="form-control" placeholder="Enter book title" readonly />
+                    <span asp-validation-for="Challenge.BookTitle" class="text-danger"></span>
+                </div>
+
+                <!-- Book Cover URL (Hidden if challenge is completed) -->
+                @if (Model.Challenge.BooksRead == Model.Challenge.TotalBooks)
+                {
+                    <div class="form-group">
+                        <label asp-for="Challenge.BookCoverUrl" class="control-label">Book Cover URL</label>
+                        <input asp-for="Challenge.BookCoverUrl" class="form-control" placeholder="Enter book cover URL" readonly />
+                        <span asp-validation-for="Challenge.BookCoverUrl" class="text-danger"></span>
+                    </div>
+                }
+
+                <!-- Slider for Books Read -->
+                <div class="form-group">
+                    <label asp-for="Challenge.BooksRead" class="control-label">Pages Read</label>
+                    <input type="range" asp-for="Challenge.BooksRead" class="form-control-range" min="0" max="@Model.Challenge.TotalBooks" step="1" oninput="updateSliderValue(this)" />
+                    <span id="sliderValue" class="ml-2">@Model.Challenge.BooksRead</span> <!-- Display current value -->
+                    <span asp-validation-for="Challenge.BooksRead" class="text-danger"></span>
+                </div>
+
+                <!-- Total Books (Removed, not editable anymore) -->
+                <!-- Submit Button -->
+                <div class="form-group text-center">
+                    <input type="submit" value="Save Changes" class="btn btn-success btn-lg" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a asp-page="./Index" class="btn btn-outline-primary btn-sm">Back to Challenges List</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Update the displayed value of the slider dynamically as the user slides
+        function updateSliderValue(slider) {
+            document.getElementById("sliderValue").innerText = slider.value;
+        }
+
+        // Disable the inputs if the challenge is completed (BooksRead == TotalBooks)
+        @if (Model.Challenge.BooksRead == Model.Challenge.TotalBooks)
+        {
+            <text>
+                                // Disabling all the inputs
+                                document.querySelectorAll('input').forEach(input => {
+                        input.disabled = true;
+                                });
+            </text>
+        }
+    </script>
+}

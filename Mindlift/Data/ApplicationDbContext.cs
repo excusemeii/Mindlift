@@ -15,5 +15,6 @@ namespace Mindlift.Data
         public DbSet<Mindlift.Models.Book> Book { get; set; } = default!;
         public DbSet<Mindlift.Models.VideoContent> VideoContent { get; set; } = default!;
         public DbSet<ReadingProgress> ReadingProgress { get; set; } = default!;
+        public DbSet<Mindlift.Models.Challenge> Challenge { get; set; } = default!;
     }
 }

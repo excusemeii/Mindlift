@@ -1,0 +1,62 @@
+﻿@page
+@model Mindlift.Pages.Challenges.IndexModel
+
+@{
+    ViewData["Title"] = "Challenges";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-primary">Book Challenges</h1>
+
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover shadow-sm rounded">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">Challenge Name</th>
+                    <th class="text-center">Theme</th>
+                    <th class="text-center">Book Title</th>
+                    <th class="text-center">Book Cover</th>
+                    <th class="text-center">Pages Read</th>
+                    <th class="text-center">Pages to Read</th>
+                    <th class="text-center">Progress</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Challenge)
+                {
+                    var progressPercentage = (item.TotalBooks > 0) ? (item.BooksRead * 100) / item.TotalBooks : 0;
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Theme)</td>
+                        <td>@Html.DisplayFor(modelItem => item.BookTitle)</td>
+                        <td class="text-center">
+                            <img src="@item.BookCoverUrl" alt="@item.BookTitle" class="img-fluid rounded shadow" style="max-width: 100px;" />
+                        </td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.BooksRead)</td>
+                        <td class="text-center">@Html.DisplayFor(modelItem => item.TotalBooks)</td>
+                        <td class="text-center">
+                            <div class="progress" style="height: 25px;">
+                                <div class="progress-bar" role="progressbar" style="width: @progressPercentage%" aria-valuenow="@progressPercentage" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-warning btn-sm" asp-page="./Edit" asp-route-id="@item.Id">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Optional: Include FontAwesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<!-- Optional: Include Bootstrap JS for enhanced interactivity -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
