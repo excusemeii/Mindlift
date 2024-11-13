@@ -7,7 +7,6 @@
 
 <div class="container mt-5">
     <h1 class="text-center mb-4">Create Reading Progress</h1>
-
     <h4 class="text-center text-muted mb-4">Fill in the details to track your reading progress</h4>
 
     <div class="row justify-content-center">
@@ -19,39 +18,37 @@
                 <div class="card-body">
                     <form method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
-                        <br />
-                        <!-- Start Date (only date, no time) -->
+
+                        <!-- Start Date -->
                         <div class="form-group">
                             <label asp-for="ReadingProgress.StartDate" class="control-label font-weight-bold">Start Date</label>
-                            <input asp-for="ReadingProgress.StartDate" class="form-control" type="date" />
+                            <input asp-for="ReadingProgress.StartDate" class="form-control" type="date" min="1900-01-01" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
                             <span asp-validation-for="ReadingProgress.StartDate" class="text-danger"></span>
                         </div>
-                        <br />
-                        <!-- Completion Date (only date, no time) -->
+
+                        <!-- Completion Date -->
                         <div class="form-group">
                             <label asp-for="ReadingProgress.CompletionDate" class="control-label font-weight-bold">Completion Date</label>
-                            <input asp-for="ReadingProgress.CompletionDate" class="form-control" type="date" />
+                            <input asp-for="ReadingProgress.CompletionDate" class="form-control" type="date" min="@Model.ReadingProgress.StartDate.ToString("yyyy-MM-dd")" max="@DateTime.Now.ToString("yyyy-MM-dd")" />
                             <span asp-validation-for="ReadingProgress.CompletionDate" class="text-danger"></span>
                         </div>
-                        <br />
+
                         <!-- Book Title -->
                         <div class="form-group">
                             <label asp-for="ReadingProgress.BookTitle" class="control-label font-weight-bold">Book Title</label>
-                            <input asp-for="ReadingProgress.BookTitle" class="form-control" placeholder="Enter the title of the book" />
+                            <input asp-for="ReadingProgress.BookTitle" class="form-control" placeholder="Enter the title of the book" required />
                             <span asp-validation-for="ReadingProgress.BookTitle" class="text-danger"></span>
                         </div>
-                        <br />
-                        <!-- Completed checkbox -->
+
+                        <!-- Completed Checkbox -->
                         <div class="form-group form-check">
-                            <label class="form-check-label">
-                                <input class="form-check-input" asp-for="ReadingProgress.Completed" />
-                                <span>@Html.DisplayNameFor(model => model.ReadingProgress.Completed)</span>
-                            </label>
+                            <input class="form-check-input" asp-for="ReadingProgress.Completed" />
+                            <label asp-for="ReadingProgress.Completed" class="form-check-label">Completed</label>
                         </div>
 
-                        <!-- Hidden fields for TotalBooksRead and MilestoneLevel -->
-                        <input type="hidden" asp-for="ReadingProgress.TotalBooksRead" value="1" />
-                        <input type="hidden" asp-for="ReadingProgress.MilestoneLevel" value="Bronze" />
+                        <!-- Hidden Fields -->
+                        <input type="hidden" asp-for="ReadingProgress.TotalBooksRead" />
+                        <input type="hidden" asp-for="ReadingProgress.MilestoneLevel" />
 
                         <div class="form-group text-center mt-4">
                             <input type="submit" value="Create Progress" class="btn btn-success btn-lg" />
