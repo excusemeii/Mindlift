@@ -1,10 +1,273 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Styles {
+    <style>
+
+        body {
+            background-image: url('https://www.bing.com/images/search?q=light%20background%20reading%20image&FORM=IQFRBA&id=70AE1FB6FA0CC8967CD31BCE1DD4BE83D736E004@page');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0.9;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.85); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .book-image {
+            max-width: 200px;
+            height: auto;
+        }
+
+        #featured-videos {
+            background-color: #ffdab9;
+        }
+
+        #top-genres {
+            background-color: #ffefd5;
+        }
+
+        #read-of-month {
+            background-color: #ffe4b5;
+        }
+
+        #talk-about-books {
+            background-color: #ffdab9;
+        }
+
+        #reader-testimonials {
+            background-color: #f0e68c;
+        }
+
+        #latest-reviews {
+            background-color: #ffefd5;
+        }
+
+        .hero-section {
+            background-image: url('/images/mindlift-hero.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+
+        .hero-title, .hero-subtitle {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+        }
+
+        .testimonial {
+            background-color: #fff3e6;
+            border-left: 5px solid #d8543a;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+}
+
+<div class="hero-section text-center">
+    <h1 class="hero-title">Welcome to Mindlift</h1>
+    <p class="hero-subtitle">Your hub for self-help books and personal growth resources.</p>
 </div>
+
+<section id="featured-videos" class="section">
+    <h2>Featured Videos</h2>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card shadow">
+                <img src="/images/personal-development.jpg" class="card-img-top" alt="Personal Development">
+                <div class="card-body">
+                    <h5 class="card-title">Personal Development</h5>
+                    <p class="card-text">Discover videos on enhancing your personal growth.</p>
+                    <a asp-page="/Videos/Index" class="btn btn-danger">Watch Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card shadow">
+                <img loading="lazy" src="/images/mindfulness.jpg" class="card-img-top" alt="Mindfulness & Meditation">
+                <div class="card-body">
+                    <h5 class="card-title">Mindfulness & Meditation</h5>
+                    <p class="card-text">Explore videos for inner peace and mindfulness.</p>
+                    <a asp-page="/Videos/Index" class="btn btn-danger">Watch Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="card shadow">
+                <img src="/images/productivity.jpg" class="card-img-top" alt="Productivity Hacks">
+                <div class="card-body">
+                    <h5 class="card-title">Productivity Hacks</h5>
+                    <p class="card-text">Learn techniques to boost your productivity.</p>
+                    <a asp-page="/Videos/Index" class="btn btn-danger">Watch Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="top-genres" class="section">
+    <h2>Top Book Genres</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card shadow">
+                <img  src="/images/self-improvement.jpg" class="card-img-top" alt="Self-Improvement">
+                <div class="card-body">
+                    <h5 class="card-title">Self-Improvement</h5>
+                    <a asp-page="/Libraries/Index" class="btn btn-danger">Explore More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <img src="/images/motivation.png" class="card-img-top" alt="Motivation">
+                <div class="card-body">
+                    <h5 class="card-title">Motivation</h5>
+                    <a asp-page="/Libraries/Index" class="btn btn-danger">Explore More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <img src="/images/mindfulness-books.jpg" class="card-img-top" alt="Mindfulness">
+                <div class="card-body">
+                    <h5 class="card-title">Mindfulness</h5>
+                    <a asp-page="/Libraries/Index" class="btn btn-danger">Explore More</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card shadow">
+                <img src="/images/productivity-books.jpg" class="card-img-top" alt="Productivity">
+                <div class="card-body">
+                    <h5 class="card-title">Productivity</h5>
+                    <a asp-page="/Libraries/Index" class="btn btn-danger">Explore More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="read-of-month" class="section">
+    <h2>Read of the Month</h2>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <img loading="lazy" src="/images/atomic-habits-dots.png" alt="Atomic Habits" class="img-fluid book-image">
+        </div>
+        <div class="col-md-8">
+            <h3>Atomic Habits by James Clear</h3>
+            <p>
+                "Atomic Habits" is a groundbreaking book on how to change your habits and get 1% better every day. James Clear, an expert on habit formation, reveals practical strategies that will teach you how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.
+            </p>
+            <p>
+                James Clear is a writer and speaker focused on habits, decision-making, and continuous improvement. His work has appeared in the New York Times, Entrepreneur, Time, and on CBS This Morning.
+            </p>
+            <a asp-page="/Libraries/Index" class="btn btn-danger">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<section id="talk-about-books" class="section">
+    <h2>Talk About Books</h2>
+    <p>Join our community forums to discuss your favorite self-help books, share insights, and connect with like-minded readers.</p>
+    <a asp-page="/Forums/Index" class="btn btn-danger">Join the Discussion</a>
+</section>
+
+<section id="reader-testimonials" class="section">
+    <h2>What Our Readers Are Saying</h2>
+    <div class="testimonial">
+        <p><strong>Yash Bheke:</strong> "Mindlift has transformed my reading habits! The recommendations are spot on!"</p>
+    </div>
+    <div class="testimonial">
+        <p><strong>Abhishek Badola:</strong> "I love the community discussions! It's great to share insights with others."</p>
+    </div>
+    <div class="testimonial">
+        <p><strong>Deepika Srivastava:</strong> "The resources available here have helped me grow in ways I never thought possible."</p>
+    </div>
+    <div class="testimonial">
+        <p><strong>Kanchan Joshi:</strong> "This book hub has changed my perspective on life. It teaches you to live in the present moment and appreciate the now!"</p>
+    </div>
+</section>
+
+<section id="latest-reviews" class="section">
+    <h2>Latest Reviews</h2>
+    <p>Check out the most recent reviews from our community members and contribute your own thoughts on the books you've read.</p>
+    <div class="d-flex justify-content-between">
+        <a asp-page="/Reviews/Index" class="btn btn-danger">Read Reviews</a>
+        <a asp-page="/Reviews/Create" class="btn btn-danger">Give a Review</a>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const sections = document.querySelectorAll('.section');
+
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+
+            function handleScroll() {
+                sections.forEach(section => {
+                    if (isInViewport(section)) {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+
+            heroTitle.style.opacity = '1';
+            heroTitle.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                heroSubtitle.style.opacity = '1';
+                heroSubtitle.style.transform = 'translateY(0)';
+            }, 500);
+
+            handleScroll();
+            window.addEventListener('scroll', handleScroll);
+        });
+    </script>
+}
