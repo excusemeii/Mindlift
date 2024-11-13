@@ -1,0 +1,76 @@
+﻿@page
+@model Mindlift.Pages.VideoList.IndexModel
+
+@{
+    ViewData["Title"] = "Videos";
+}
+
+<!-- Page Title -->
+<h1 style="text-align: center; font-family: 'Arial', sans-serif; color: #333; margin-bottom: 20px;">Video List</h1>
+
+<!-- Search Input for Filtering by Tags -->
+<div class="mb-4" style="text-align: center;">
+    <input type="text" id="tagSearchInput" onkeyup="filterVideos()" class="form-control" placeholder="Search by tags..." style="max-width: 300px; margin: 0 auto;">
+</div>
+
+<!-- Video Grid Layout -->
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-top: 20px;">
+    @foreach (var video in Model.VideoContent)
+    {
+        <div class="video-card" style="width: 300px; text-align: center; background-color: #f8f8f8; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h3 style="font-size: 18px; padding: 10px; color: #333;">@video.VideoTitle</h3>
+
+            <!-- Embed YouTube Video -->
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000;">
+                <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+                        src="@GetYouTubeEmbedUrl(video.Url)"
+                        allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+
+            <p style="font-size: 14px; color: #555; margin: 10px 0;">Duration: @video.Duration</p>
+            <p class="video-tags" style="font-size: 14px; color: #555;">Tags: @video.Tags</p>
+        </div>
+    }
+</div>
+
+<!-- Footer Styling -->
+<footer style="text-align: center; margin-top: 40px; font-size: 14px; color: #aaa;">
+    <p>&copy; 2024 Mindlift. All rights reserved.</p>
+</footer>
+
+<!-- Helper Method to Get YouTube Embed URL -->
+@functions {
+    public string GetYouTubeEmbedUrl(string url)
+    {
+        var videoId = ExtractYouTubeVideoId(url);
+        return string.IsNullOrEmpty(videoId) ? string.Empty : $"https://www.youtube.com/embed/{videoId}?autoplay=1";
+    }
+
+    public string ExtractYouTubeVideoId(string url)
+    {
+        var match = System.Text.RegularExpressions.Regex.Match(url, @"(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]*\/\S+\/|\S+\/|\S+))?(?:v=|\/)([a-zA-Z0-9_-]{11})");
+        return match.Success ? match.Groups[1].Value : string.Empty;
+    }
+}
+
+<!-- JavaScript for Filtering Videos by Tags -->
+<script>
+    function filterVideos() {
+        // Get the search input and convert to lowercase
+        var input = document.getElementById("tagSearchInput");
+        var filter = input.value.toLowerCase();
+        var videoCards = document.getElementsByClassName("video-card");
+
+        // Loop through all video cards and hide those that don't match the search
+        for (var i = 0; i < videoCards.length; i++) {
+            var tags = videoCards[i].querySelector(".video-tags").textContent.toLowerCase();
+
+            // Check if the tags string contains the filter term
+            if (tags.includes(filter)) {
+                videoCards[i].style.display = "";
+            } else {
+                videoCards[i].style.display = "none";
+            }
+        }
+    }
+</script>

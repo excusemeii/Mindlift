@@ -1,0 +1,59 @@
+﻿@page
+@model Mindlift.Pages.Challenges.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Challenge</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Challenge.Name" class="control-label"></label>
+                <input asp-for="Challenge.Name" class="form-control" />
+                <span asp-validation-for="Challenge.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Challenge.Theme" class="control-label"></label>
+                <input asp-for="Challenge.Theme" class="form-control" />
+                <span asp-validation-for="Challenge.Theme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Challenge.BookTitle" class="control-label"></label>
+                <input asp-for="Challenge.BookTitle" class="form-control" />
+                <span asp-validation-for="Challenge.BookTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Challenge.BookCoverUrl" class="control-label"></label>
+                <input asp-for="Challenge.BookCoverUrl" class="form-control" />
+                <span asp-validation-for="Challenge.BookCoverUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Challenge.BooksRead" class="control-label"></label>
+                <input asp-for="Challenge.BooksRead" class="form-control" />
+                <span asp-validation-for="Challenge.BooksRead" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Challenge.TotalBooks" class="control-label"></label>
+                <input asp-for="Challenge.TotalBooks" class="form-control" />
+                <span asp-validation-for="Challenge.TotalBooks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,111 @@
+﻿@page
+@model Mindlift.Pages.BookList.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .book-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .book-card:hover {
+                transform: scale(1.03);
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+        .book-image {
+            max-height: 300px;
+            width: auto;
+            margin: 0 auto;
+            display: block;
+            padding: 10px;
+        }
+
+        .book-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .book-author {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .ratings {
+            color: blue;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <h2 class="text-center mb-4">Books</h2>
+
+        <!-- Search Input -->
+        <div class="mb-4">
+            <input type="text" id="searchInput" onkeyup="filterBooks()" class="form-control" placeholder="Search for books...">
+        </div>
+
+        <div class="row" id="bookList">
+            @foreach (var book in Model.Book)
+            {
+                <div class="col-md-4 mb-4 book-card-container">
+                    <div class="card book-card shadow-sm">
+                        <img src="https://covers.openlibrary.org/b/isbn/9788820030971-L.jpg" alt="Book cover" class="book-image">
+                        <div class="card-body">
+                            <h5 class="book-title">@book.BookTitle</h5>
+                            <p class="book-author">by @book.Author</p>
+                            <p class="ratings">
+                                <span>&#9733;</span> @book.RatingsAvg (based on @book.RatingsCount ratings)
+                            </p>
+                            <p class="text-muted">
+                                Published: @book.PublishedDate.ToString("MMMM dd, yyyy")
+                            </p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="@Url.Action("Details", "Books", new { id = book.BookId })"
+                               class="btn btn-primary btn-sm">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- JavaScript for Filtering -->
+    <script>
+        function filterBooks() {
+            // Get the search input and convert to lowercase
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toLowerCase();
+            var bookCards = document.getElementsByClassName("book-card-container");
+
+            // Loop through all book cards and hide those that don't match the search
+            for (var i = 0; i < bookCards.length; i++) {
+                var title = bookCards[i].querySelector(".book-title").textContent.toLowerCase();
+                var author = bookCards[i].querySelector(".book-author").textContent.toLowerCase();
+
+                if (title.includes(filter) || author.includes(filter)) {
+                    bookCards[i].style.display = "";
+                } else {
+                    bookCards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
