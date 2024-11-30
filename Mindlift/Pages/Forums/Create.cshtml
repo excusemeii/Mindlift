@@ -5,23 +5,80 @@
     ViewData["Title"] = "Create Forum";
 }
 
-<h2>Create Forum</h2>
-<hr />
+@section Styles {
+    <style>
+        .form-container {
+            margin: 30px auto;
+            padding: 30px;
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-<form method="post">
-    <div class="form-group">
-        <label asp-for="Forum.Title"></label>
-        <input asp-for="Forum.Title" class="form-control" />
-        <span asp-validation-for="Forum.Title" class="text-danger"></span>
-    </div>
+        .form-group label {
+            font-weight: bold;
+        }
 
-    <div class="form-group">
-        <label asp-for="Forum.Description"></label>
-        <textarea asp-for="Forum.Description" class="form-control"></textarea>
-        <span asp-validation-for="Forum.Description" class="text-danger"></span>
-    </div>
+        .form-control {
+            border: 1px solid #1890ff;
+            border-radius: 5px;
+        }
 
-    <button type="submit" class="btn btn-primary">Create</button>
-</form>
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
+            border-color: #1890ff;
+        }
 
-<a asp-page="./Index">Back to List</a>
+        .text-danger {
+            font-size: 0.9em;
+        }
+
+        .btn-primary {
+            background-color: #1890ff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #106bce;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: #1890ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #106bce;
+        }
+    </style>
+}
+
+<div class="form-container">
+    <h2 class="text-center">Create Forum</h2>
+    <hr />
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Forum.Title"></label>
+            <input asp-for="Forum.Title" class="form-control" />
+            <span asp-validation-for="Forum.Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Forum.Description"></label>
+            <textarea asp-for="Forum.Description" class="form-control"></textarea>
+            <span asp-validation-for="Forum.Description" class="text-danger"></span>
+        </div>
+        <br />
+
+        <button type="submit" class="btn btn-primary btn-block">Create</button>
+    </form>
+
+    <a asp-page="./Index" class="back-link">Back to List</a>
+</div>
