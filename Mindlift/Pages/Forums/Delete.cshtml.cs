@@ -29,7 +29,7 @@ namespace Mindlift.Pages.Forums
                 return NotFound();
             }
 
-            var forum = await _context.Forum.FirstOrDefaultAsync(m => m.Id == id);
+            var forum = await _context.Forums.FirstOrDefaultAsync(m => m.Id == id);
 
             if (forum == null)
             {
@@ -49,11 +49,11 @@ namespace Mindlift.Pages.Forums
                 return NotFound();
             }
 
-            var forum = await _context.Forum.FindAsync(id);
+            var forum = await _context.Forums.FindAsync(id);
             if (forum != null)
             {
                 Forum = forum;
-                _context.Forum.Remove(Forum);
+                _context.Forums.Remove(Forum);
                 await _context.SaveChangesAsync();
             }
 

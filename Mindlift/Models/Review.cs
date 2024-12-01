@@ -5,6 +5,10 @@ namespace Mindlift.Models
 {
     public class Review
     {
+
+        [DisplayName("Title of the Book")]
+        [Required(ErrorMessage = "Book Title is required")]
+        public string BookTitle { get; set; }
         public int ReviewId { get; set; }
         [Required(ErrorMessage = "Rating is required")]
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]

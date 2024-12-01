@@ -10,7 +10,14 @@ namespace Mindlift.Data
             : base(options)
         {
         }
-        public DbSet<Mindlift.Models.Forum> Forum { get; set; } = default!;
-        public DbSet<Mindlift.Models.User> User { get; set; } = default!;
+        public DbSet<Mindlift.Models.Review> Review { get; set; } = default!;
+        public DbSet<Mindlift.Models.Library> Library { get; set; } = default!;
+
+        public DbSet<Mindlift.Models.YouTubeVideo> YoutubeVideos { get; set; } = default!;
+        public DbSet<Mindlift.Models.Forum> Forums { get; set; } = default!;
+        public DbSet<Mindlift.Models.PostReply> PostReplies { get; set; } = default!;
+        public DbSet<Mindlift.Models.Post> Posts { get; set; } = default!;
+
+        //public DbSet<Mindlift.Models.YouTubeApiService> YouTubeApiService { get; set; } = default!;
     }
 }

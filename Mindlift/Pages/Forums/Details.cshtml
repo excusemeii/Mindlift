@@ -9,67 +9,118 @@
     var forum = Model;
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+@section Styles {
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        .details-container {
+            margin-top: 30px;
+            margin-bottom: 50px;
         }
-        .forum-details {
-            margin: 20px;
+
+        .forum-title {
+            color: #1890ff;
+            font-weight: 600;
+            margin-bottom: 20px;
         }
-        .user-list {
-            list-style-type: none;
-            padding: 0;
+
+        .forum-description {
+            color: #1890ff;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
         }
-        .user-item {
-            background-color: #f4f4f4;
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
+
+        .forum-date {
+            color: #1a76d2;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
         }
-        .user-item h4 {
-            margin: 0;
+
+        .btn-action {
+            background-color: transparent;
+            color: #1890ff;
+            border: 1px solid #1890ff;
+            margin-right: 10px;
+            padding: 5px 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
-        .user-item p {
-            margin: 5px 0;
-        }
+
+            .btn-action:hover {
+                background-color: #1890ff;
+                color: white;
+            }
     </style>
 </head>
 <body>
 
-    <h1>@forum.ForumName</h1>
+        .btn-back {
+            color: #1890ff;
+            font-size: 1rem;
+        }
 
-    <div class="forum-details">
-        <h3>Users in this forum:</h3>
-        <ul class="user-list">
-            @if (forum.Users != null && forum.Users.Any())
-            {
-                foreach (var user in forum.Users)
-                {
-                    <li class="user-item">
-                        <h4>@user.Username</h4>
-                        <p>Email: @user.Email</p>
-                        <p>Joined: @user.JoinDate?.ToString("MMMM dd, yyyy")</p>
-                    </li>
-                }
+            .btn-back:hover {
+                text-decoration: underline;
             }
-            else
-            {
-                <li>No users yet!</li>
-            }
-        </ul>
+
+        .page-title {
+            color: #1890ff;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .card {
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(24, 144, 255, 0.1);
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+    </style>
+}
+
+<div class="container details-container">
+    <h2 class="text-center page-title">Forum Details</h2>
+
+    <div class="card">
+        <h4 class="forum-title">@Model.Forum.Title</h4>
+        <p class="forum-description">@Model.Forum.Description</p>
+        <p class="forum-date">
+            <i class="far fa-calendar-alt me-2"></i>
+            @(Model.Forum.Created is DateTime createdDate ? createdDate.ToString("MMMM dd, yyyy") : Model.Forum.Created.ToString())
+        </p>
+
+        <div class="text-center">
+            <a asp-page="./Edit" asp-route-id="@Model.Forum.Id" class="btn btn-action">
+                <i class="fas fa-edit me-1"></i>Edit Forum
+            </a>
+            <a asp-page="./Index" class="btn btn-back">
+                <i class="fas fa-arrow-left me-1"></i>Back to List
+            </a>
+        </div>
     </div>
+</div>
 
-    <a href="@Url.Page("ForumList")">
-        <i class="fas fa-arrow-left"></i> Back to Forum List
-    </a>
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const title = document.querySelector('.page-title');
+            const card = document.querySelector('.card');
 
-</body>
-</html>
+            // Animate title
+            setTimeout(() => {
+                title.style.opacity = '1';
+                title.style.transform = 'translateY(0)';
+            }, 300);
 
+            // Animate card
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 500);
+        });
+    </script>
+}
