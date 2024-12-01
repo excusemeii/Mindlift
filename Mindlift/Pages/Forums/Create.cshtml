@@ -7,78 +7,176 @@
 
 @section Styles {
     <style>
-        .form-container {
-            margin: 30px auto;
+        .create-forum-container {
+            max-width: 800px;
+            margin: 40px auto;
             padding: 30px;
-            background-color: #e6f7ff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #fff3e6; /* Light peach background */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(216, 84, 58, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
 
-        .form-group label {
-            font-weight: bold;
+        .form-heading {
+            color: #5d4037; /* Darker brown color */
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 2.2rem;
+        }
+
+        .form-subheading {
+            color: #886d65; /* Subtle brown color */
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            color: #5d4037;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 1rem;
         }
 
         .form-control {
-            border: 1px solid #1890ff;
-            border-radius: 5px;
-        }
-
-        .form-control:focus {
-            box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
-            border-color: #1890ff;
-        }
-
-        .text-danger {
-            font-size: 0.9em;
-        }
-
-        .btn-primary {
-            background-color: #1890ff;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            border: 2px solid #ffccbc; /* Light orange border */
+            border-radius: 8px;
+            padding: 12px 15px;
+            background-color: white;
             transition: all 0.3s ease;
         }
 
-        .btn-primary:hover {
-            background-color: #106bce;
+            .form-control:focus {
+                border-color: #d8543a;
+                box-shadow: 0 0 0 0.2rem rgba(216, 84, 58, 0.25);
+            }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
         }
+
+        .btn-submit {
+            background-color: #d8543a; /* Orange color */
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-submit:hover {
+                background-color: #c14836;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 10px rgba(216, 84, 58, 0.2);
+            }
 
         .back-link {
-            display: inline-block;
-            margin-top: 15px;
-            color: #1890ff;
-            text-decoration: none;
-            transition: color 0.3s ease;
+            text-align: center;
+            margin-top: 25px;
         }
 
-        .back-link:hover {
-            color: #106bce;
+            .back-link a {
+                color: #d8543a;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: color 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+            }
+
+                .back-link a:hover {
+                    color: #c14836;
+                }
+
+            .back-link i {
+                margin-right: 8px;
+            }
+
+        .validation-summary {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: block;
         }
     </style>
 }
 
-<div class="form-container">
-    <h2 class="text-center">Create Forum</h2>
-    <hr />
+<div class="create-forum-container">
+    <h1 class="form-heading">Create Forum</h1>
+    <p class="form-subheading">Start a new discussion for the community</p>
 
     <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger validation-summary"></div>
+
+        <!-- Forum Title Field -->
         <div class="form-group">
-            <label asp-for="Forum.Title"></label>
-            <input asp-for="Forum.Title" class="form-control" />
+            <label asp-for="Forum.Title" class="form-label">Forum Title</label>
+            <input asp-for="Forum.Title" class="form-control" placeholder="Enter forum title" />
             <span asp-validation-for="Forum.Title" class="text-danger"></span>
         </div>
 
+        <!-- Forum Description Field -->
         <div class="form-group">
-            <label asp-for="Forum.Description"></label>
-            <textarea asp-for="Forum.Description" class="form-control"></textarea>
+            <label asp-for="Forum.Description" class="form-label">Forum Description</label>
+<textarea asp-for="Forum.Description" class="form-control" placeholder="Describe the topic of the forum" rows="4"></textarea>
             <span asp-validation-for="Forum.Description" class="text-danger"></span>
         </div>
-        <br />
 
-        <button type="submit" class="btn btn-primary btn-block">Create</button>
+        <!-- Submit Button -->
+        <button type="submit" class="btn-submit">
+            <i class="fas fa-paper-plane me-2"></i> Create Forum
+        </button>
     </form>
 
-    <a asp-page="./Index" class="back-link">Back to List</a>
+    <!-- Back Link -->
+    <div class="back-link">
+        <a asp-page="Index">
+            <i class="fas fa-arrow-left"></i> Back to List
+        </a>
+    </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate form container
+            const container = document.querySelector('.create-forum-container');
+            setTimeout(() => {
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 300);
+
+            // Add animation to submit button
+            const submitBtn = document.querySelector('.btn-submit');
+            submitBtn.addEventListener('mouseenter', () => {
+                submitBtn.style.transform = 'translateY(-2px)';
+            });
+            submitBtn.addEventListener('mouseleave', () => {
+                submitBtn.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+}
+
+has context menu

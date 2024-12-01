@@ -10,25 +10,27 @@
         .form-container {
             margin: 30px auto;
             padding: 30px;
-            background-color: #e6f7ff; /* Light blue background */
+            background-color: #fff3e6; /* Light peach background */
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(216, 84, 58, 0.1); /* Soft shadow */
+            max-width: 600px; /* Max width for better responsiveness */
         }
 
         .form-group label {
             font-weight: bold;
-            color: #1890ff; /* Label color */
+            color: #5d4037; /* Label color */
         }
 
         .form-control {
-            border: 1px solid #1890ff; /* Light blue border */
+            border: 1px solid #d8543a; /* Border color for inputs */
             border-radius: 5px;
             padding: 10px;
+            margin-top: 5px;
         }
 
             .form-control:focus {
-                border-color: #1890ff; /* Focus border color */
-                box-shadow: 0 0 5px rgba(24, 144, 255, 0.5); /* Focus shadow */
+                border-color: #d8543a; /* Focus border color */
+                box-shadow: 0 0 5px rgba(216, 84, 58, 0.3); /* Focus shadow */
             }
 
         .text-danger {
@@ -37,34 +39,47 @@
         }
 
         .btn-primary {
-            background-color: #1890ff; /* Primary button color */
+            background-color: #d8543a; /* Primary button color */
             border: none;
-            padding: 10px 15px;
+            padding: 10px 20px;
             border-radius: 5px;
             color: white;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
             .btn-primary:hover {
-                background-color: #106bce; /* Darker blue on hover */
+                background-color: #c14836; /* Darker red on hover */
             }
 
         .back-link {
             display: inline-block;
-            margin-top: 15px;
-            color: #1890ff; /* Back link color */
+            margin-top: 20px;
+            color: #0073e6; /* Back link color */
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
             .back-link:hover {
-                color: #106bce; /* Darker blue on hover */
+                color: #0056b3; /* Darker blue on hover */
+                text-decoration: underline;
             }
+
+        .form-title {
+            color: #5d4037;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
     </style>
 }
 
 <div class="form-container">
-    <h2 class="text-center">Edit Forum</h2>
+    <h2 class="form-title text-center">Edit Forum</h2>
 
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -87,7 +102,6 @@
             <input asp-for="Forum.Created" class="form-control" />
             <span asp-validation-for="Forum.Created" class="text-danger"></span>
         </div>
-        <br />
 
         <div class="form-group">
             <input type="submit" value="Save" class="btn btn-primary" />
@@ -95,7 +109,9 @@
     </form>
 
     <div class="mt-3">
-        <a asp-page="./Index" class="back-link">Back to List</a>
+        <a asp-page="./Index" class="back-link">
+            <i class="fas fa-arrow-left me-2"></i>Back to List
+        </a>
     </div>
 </div>
 
@@ -103,4 +119,18 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formContainer = document.querySelector('.form-container');
+
+            // Animate form container
+            setTimeout(() => {
+                formContainer.style.opacity = '1';
+                formContainer.style.transform = 'translateY(0)';
+            }, 300);
+        });
+    </script>
 }
+
+has context menu
