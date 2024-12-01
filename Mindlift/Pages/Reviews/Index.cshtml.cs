@@ -19,7 +19,7 @@ namespace Mindlift.Pages.Reviews
             _context = context;
         }
 
-        public IList<Review> Review { get;set; } = default!;
+        public IList<Review> Review { get; set; } = default!;
 
         public async Task OnGetAsync()
         {
@@ -27,3 +27,4 @@ namespace Mindlift.Pages.Reviews
         }
     }
 }
+

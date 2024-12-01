@@ -30,7 +30,7 @@ namespace Mindlift.Pages.Reviews
                 return NotFound();
             }
 
-            var review =  await _context.Review.FirstOrDefaultAsync(m => m.ReviewId == id);
+            var review = await _context.Review.FirstOrDefaultAsync(m => m.ReviewId == id);
             if (review == null)
             {
                 return NotFound();

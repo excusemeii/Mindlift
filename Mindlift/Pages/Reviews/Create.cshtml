@@ -148,6 +148,16 @@
     <form method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger validation-summary"></div>
 
+        <!-- Book Title Field -->
+        <div class="form-group">
+            <label asp-for="Review.BookTitle" class="form-label">Book Title</label>
+            <input asp-for="Review.BookTitle"
+                   class="form-control"
+                   placeholder="Enter the book title" />
+            <span asp-validation-for="Review.BookTitle" class="text-danger"></span>
+        </div>
+
+
         <!-- Rating Field -->
         <div class="form-group">
             <label class="form-label">Rating</label>

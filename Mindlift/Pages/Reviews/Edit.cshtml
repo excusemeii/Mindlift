@@ -151,7 +151,7 @@
     <p class="form-subheading">Update your thoughts about the book</p>
 
     <form method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger validation-summary"></div>
+        <p class="form-subheading"><strong>@Model.Review.BookTitle</strong></p>
 
         <input type="hidden" asp-for="Review.ReviewId" />
 
