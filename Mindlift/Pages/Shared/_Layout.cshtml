@@ -6,60 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewData["Title"] - Mindlift</title>
+    
+    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mindlift.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-    <style type="text/css">
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fff3e6;
-            color: #5d4037;
-        }
-
-        .navbar {
-            background-color: #ffccbc;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-brand, .nav-link {
-            color: #d8543a !important;
-        }
-
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .footer {
-            background-color: #ffab91;
-            color: #5d4037;
-            padding: 10px 0;
-        }
-
-        .container {
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-top: 20px;
-        }
-
-        .btn-danger {
-            background-color: #d8543a;
-            border-color: #d8543a;
-        }
-
-        .btn-danger:hover {
-            background-color: #c14836;
-            border-color: #c14836;
-        }
-    </style>
+    
     @await RenderSectionAsync("Styles", required: false)
 </head>
 
 <body>
+    
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
@@ -100,12 +59,14 @@
         </main>
     </div>
 
+    
     <footer class="border-top footer text-muted">
         <div class="container text-center">
             &copy; 2024 - Mindlift - <a asp-area="" asp-page="/Privacy" title="Privacy Policy">Privacy</a>
         </div>
     </footer>
 
+    
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

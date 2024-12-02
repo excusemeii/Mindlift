@@ -20,3 +20,134 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* site.css */
+.section {
+    margin-bottom: 50px;
+    padding: 30px;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.card {
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.book-image {
+    max-width: 200px;
+    height: auto;
+}
+
+#featured-videos {
+    background-color: #ffdab9;
+}
+
+#top-genres {
+    background-color: #ffefd5;
+}
+
+#read-of-month {
+    background-color: #ffe4b5;
+}
+
+#talk-about-books {
+    background-color: #ffdab9;
+}
+
+#reader-testimonials {
+    background-color: #f0e68c;
+}
+
+#latest-reviews {
+    background-color: #ffefd5;
+}
+
+.hero-section {
+    background-image: url('/images/mindlift-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 100px 0;
+    margin-bottom: 50px;
+}
+
+.hero-title, .hero-subtitle {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+}
+
+.testimonial {
+    background-color: #fff3e6;
+    border-left: 5px solid #d8543a;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff3e6;
+    color: #5d4037;
+}
+
+
+.navbar {
+    background-color: #ffccbc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand, .nav-link {
+    color: #d8543a !important;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+
+.footer {
+    background-color: #ffab91;
+    color: #5d4037;
+    padding: 10px 0;
+}
+
+
+.container {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+
+.btn-danger {
+    background-color: #d8543a;
+    border-color: #d8543a;
+}
+
+    .btn-danger:hover {
+        background-color: #c14836;
+        border-color: #c14836;
+    }
