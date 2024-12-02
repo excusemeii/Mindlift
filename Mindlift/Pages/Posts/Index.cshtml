@@ -85,7 +85,6 @@
 <div class="section posts-section">
     <h2 class="text-center mb-4">Posts in @Model.Forum.Title</h2>
 
-    <!-- Create New Post Button -->
     <div class="mb-4 text-center">
         <a asp-page="Create" asp-route-forumId="@Model.Forum.Id" class="create-button">Create New Post</a>
     </div>
@@ -107,7 +106,6 @@
                     <td>@post.Content</td>
                     <td>@(post.Created is DateTime createdDate ? createdDate.ToString("MMMM dd, yyyy") : post.Created.ToString())</td>
                     <td class="action-buttons">
-                        <a asp-page="./Edit" asp-route-id="@post.Id" asp-route-forumId="@Model.Forum.Id" class="btn btn-outline-primary btn-sm">Edit</a>
                         <a asp-page="./Delete" asp-route-id="@post.Id" asp-route-forumId="@Model.Forum.Id" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>
                 </tr>
