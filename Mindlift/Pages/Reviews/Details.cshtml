@@ -5,95 +5,9 @@
     ViewData["Title"] = "Review Details";
 }
 
-<style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    .details-container {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 30px;
-        background-color: #fff3e6;
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(216, 84, 58, 0.1);
-    }
-
-    .details-title {
-        color: #5d4037;
-        font-size: 2.2rem;
-        font-weight: 600;
-        margin-bottom: 20px;
-        text-align: center;
-    }
-
-    .details-section dt {
-        font-weight: bold;
-        margin-top: 1rem;
-    }
-
-    .details-section dd {
-        margin-bottom: 10px;
-    }
-
-    .details-section {
-        padding: 20px 0;
-    }
-
-    .book-image {
-        max-height: 300px;
-        width: auto;
-        margin: 0 auto;
-        display: block;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .action-buttons {
-        text-align: center;
-        margin-top: 20px;
-    }
-
-        .action-buttons a {
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            background-color: #d8543a;
-            transition: all 0.3s ease;
-        }
-
-            .action-buttons a:hover {
-                background-color: #c14836;
-                transform: translateY(-2px);
-                box-shadow: 0 4px 10px rgba(216, 84, 58, 0.2);
-            }
-
-    .back-link {
-        text-align: center;
-        margin-top: 25px;
-    }
-
-        .back-link a {
-            color: #d8543a;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-            .back-link a:hover {
-                color: #c14836;
-            }
-
-        .back-link i {
-            margin-right: 8px;
-        }
-
-    .review-details dl {
-        margin-bottom: 1.5rem;
-    }
-</style>
+<head>
+    <link href="~/css/Reviews.css" rel="stylesheet" />
+</head>
 
 <div class="details-container">
     <h1 class="details-title"><strong>@Model.Review.BookTitle</strong></h1>
@@ -135,4 +49,5 @@
 
 @section Scripts {
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="~/js/Reviews.js"></script> 
 }

@@ -5,111 +5,8 @@
     ViewData["Title"] = "Top YouTube Videos";
 }
 
-@section Styles {
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
 
-        .video-container {
-            margin-top: 30px;
-            margin-bottom: 50px;
-        }
-
-        .page-title {
-            color: #5d4037;
-            font-weight: 600;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .video-card {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #fff3e6; /* Soft background color */
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-            .video-card:hover {
-                transform: scale(1.03);
-                box-shadow: 0 8px 15px rgba(216, 84, 58, 0.1);
-            }
-
-        .embed-responsive-16by9 {
-            position: relative;
-            display: block;
-            width: 100%;
-            height: 0;
-            padding-top: 56.25%; /* 16:9 aspect ratio */
-            background-color: #f0f0f0;
-            overflow: hidden;
-        }
-
-        .embed-responsive-item {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .video-title {
-            font-weight: 600;
-            color: #5d4037;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .video-description {
-            color: #5d4037;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
-
-        .video-channel {
-            color: #886d65;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .btn-search {
-            background-color: #d8543a;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-
-            .btn-search:hover {
-                background-color: #c14836;
-                color: white;
-            }
-
-        .alert-info {
-            background-color: #fff3e6;
-            color: #5d4037;
-            font-weight: 600;
-        }
-
-        footer {
-            font-size: 14px;
-            color: #aaa;
-        }
-    </style>
-}
+<link rel="stylesheet" href="~/css/Videos.css" />
 
 <div class="container video-container">
     <h2 class="text-center page-title">Top Self-Help Videos</h2>
@@ -124,7 +21,7 @@
         </form>
     </div>
 
-    <!-- Video Grid Layout -->
+    
     <div class="row mt-3">
         @if (Model.ExternalVideos != null && Model.ExternalVideos.Any())
         {
@@ -158,56 +55,13 @@
 
 </div>
 
-<!-- Footer -->
+
 <footer class="text-center mt-4">
     <p>&copy; 2024 Mindlift. All rights reserved.</p>
 </footer>
 
-<!-- Add necessary scripts for icons -->
+
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-@section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const title = document.querySelector('.page-title');
-            const cards = document.querySelectorAll('.video-card');
 
-            // Animate title
-            setTimeout(() => {
-                title.style.opacity = '1';
-                title.style.transform = 'translateY(0)';
-            }, 300);
-
-            // Animate cards
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 500 + (index * 100));
-            });
-
-            // Function to check if element is in viewport
-            function isInViewport(element) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
-            }
-
-            // Animate cards on scroll
-            function handleScroll() {
-                cards.forEach(card => {
-                    if (isInViewport(card)) {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', handleScroll);
-        });
-    </script>
-}
+<script src="~/js/Videos.js"></script>

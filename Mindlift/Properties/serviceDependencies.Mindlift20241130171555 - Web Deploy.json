@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/Mindlift20241130171555/providers/Microsoft.ServiceLinker/linkers/MindliftDB_B600D85A6A",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/mindliftserver/databases/mindliftdb",
+      "type": "mssql.azure",
+      "connectionId": "MindliftDB"
+    }
+  }
+}

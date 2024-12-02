@@ -28,16 +28,12 @@ namespace Mindlift.Pages.Videos
         public async Task OnGetAsync()
         {
             // Retrieve API key from appsettings.json
-            var config = new ConfigurationBuilder()
-                .AddUserSecrets<Program>()
-                .Build();
-            string apikey = config["apikey"];
-            ViewData["apikey"] = apikey;
+            string apiKey = _configuration["YouTubeApi:ApiKey"]; // Fetch from configuration
 
             if (!string.IsNullOrWhiteSpace(SearchQuery))
             {
                 // Construct the YouTube API URL with the search query
-                string url = $"https://www.googleapis.com/youtube/v3/search?part=snippet&q={Uri.EscapeDataString(SearchQuery)}&type=video&maxResults=3&key={apikey}";
+                string url = $"https://www.googleapis.com/youtube/v3/search?part=snippet&q={Uri.EscapeDataString(SearchQuery)}&type=video&maxResults=3&key={apiKey}";
 
                 try
                 {
@@ -77,6 +73,7 @@ namespace Mindlift.Pages.Videos
                 }
             }
         }
+
     }
 
     public class YouTubeVideo
