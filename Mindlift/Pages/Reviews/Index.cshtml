@@ -4,122 +4,9 @@
     ViewData["Title"] = "Book Reviews";
 }
 
-<style>
-    .review-container {
-        margin-top: 30px;
-        margin-bottom: 50px;
-    }
-
-    .page-title {
-        color: #5d4037;
-        font-weight: 600;
-        margin-bottom: 30px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .review-card {
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        border: none;
-        border-radius: 10px;
-        overflow: hidden;
-        background-color: #fff3e6;
-        margin-bottom: 20px;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-        .review-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 15px rgba(216, 84, 58, 0.1);
-        }
-
-    .book-image {
-        max-height: 250px;
-        width: auto;
-        margin: 0 auto;
-        display: block;
-        padding: 15px;
-        border-radius: 8px;
-    }
-
-    .review-rating {
-        font-weight: 600;
-        color: #d8543a;
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-    }
-
-    .review-comment {
-        color: #5d4037;
-        margin: 15px 0;
-        font-size: 0.95rem;
-        line-height: 1.5;
-    }
-
-    .review-date {
-        color: #886d65;
-        font-size: 0.9rem;
-        margin-bottom: 15px;
-    }
-
-    .card-body {
-        padding: 20px;
-    }
-
-    .card-footer {
-        background-color: #ffccbc;
-        border-top: none;
-        padding: 15px;
-    }
-
-    .btn-create {
-        background-color: #d8543a;
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        font-weight: 500;
-        transition: background-color 0.3s ease;
-        margin-bottom: 30px;
-    }
-
-        .btn-create:hover {
-            background-color: #c14836;
-            color: white;
-        }
-
-    .btn-action {
-        background-color: transparent;
-        color: #d8543a;
-        border: 1px solid #d8543a;
-        margin: 0 5px;
-        padding: 5px 15px;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-    }
-
-        .btn-action:hover {
-            background-color: #d8543a;
-            color: white;
-        }
-
-    .btn-delete {
-        border-color: #dc3545;
-        color: #dc3545;
-    }
-
-        .btn-delete:hover {
-            background-color: #dc3545;
-            color: white;
-        }
-
-    .stars {
-        color: #ffab91;
-        font-size: 1.2rem;
-    }
-</style>
+<head>
+    <link href="~/css/Reviews.css" rel="stylesheet" />
+</head>
 
 <div class="container review-container">
     <h2 class="text-center page-title">Book Reviews</h2>
@@ -132,7 +19,6 @@
 
     <div class="row">
         @foreach (var review in Model.Review)
-
         {
             <div class="col-md-4">
                 <div class="card review-card">
@@ -144,12 +30,10 @@
                         <div class="review-rating">
                             <span class="stars">
                                 @for (int i = 0; i < review.Rating; i++)
-
                                 {
                                     <i class="fas fa-star"></i>
                                 }
                                 @for (int i = review.Rating; i < 5; i++)
-
                                 {
                                     <i class="far fa-star"></i>
                                 }
@@ -179,47 +63,5 @@
 </div>
 
 @section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const title = document.querySelector('.page-title');
-            const cards = document.querySelectorAll('.review-card');
-
-            // Animate title
-            setTimeout(() => {
-                title.style.opacity = '1';
-                title.style.transform = 'translateY(0)';
-            }, 300);
-
-            // Animate cards
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 500 + (index * 100));
-            });
-
-            // Function to check if element is in viewport
-            function isInViewport(element) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
-            }
-
-            // Animate cards on scroll
-            function handleScroll() {
-                cards.forEach(card => {
-                    if (isInViewport(card)) {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', handleScroll);
-        });
-    </script>
+    <script src="~/js/Reviews.js"></script>
 }

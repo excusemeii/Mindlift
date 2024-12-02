@@ -5,110 +5,9 @@
     ViewData["Title"] = "Delete Review";
 }
 
-<style>
-    body {
-        background-color: #f8f9fa;
-    }
-
-    .delete-review-container {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 30px;
-        background-color: #fff3e6;
-        border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(216, 84, 58, 0.1);
-    }
-
-    .form-heading {
-        color: #5d4037;
-        text-align: center;
-        margin-bottom: 20px;
-        font-weight: 600;
-        font-size: 2.2rem;
-    }
-
-    .form-subheading {
-        color: #886d65;
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 1.1rem;
-    }
-
-    .form-group {
-        margin-bottom: 25px;
-    }
-
-    .form-label {
-        color: #5d4037;
-        font-weight: 500;
-        margin-bottom: 8px;
-        font-size: 1rem;
-    }
-
-    .form-control {
-        border: 2px solid #ffccbc;
-        border-radius: 8px;
-        padding: 12px 15px;
-        background-color: white;
-    }
-
-    .btn-submit, .btn-danger {
-        background-color: #d8543a;
-        border: none;
-        color: white;
-        padding: 12px 30px;
-        font-size: 1.1rem;
-        border-radius: 8px;
-        width: 100%;
-        margin-top: 20px;
-        transition: all 0.3s ease;
-    }
-
-        .btn-submit:hover, .btn-danger:hover {
-            background-color: #c14836;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 10px rgba(216, 84, 58, 0.2);
-        }
-
-    .back-link {
-        text-align: center;
-        margin-top: 25px;
-    }
-
-        .back-link a {
-            color: #d8543a;
-            text-decoration: none;
-            font-size: 1rem;
-            transition: color 0.3s ease;
-        }
-
-            .back-link a:hover {
-                color: #c14836;
-            }
-
-        .back-link i {
-            margin-right: 8px;
-        }
-
-    .review-details dl {
-        margin-bottom: 1.5rem;
-    }
-
-    .review-details dt {
-        font-weight: bold;
-    }
-
-    .review-details dd {
-        margin-bottom: 10px;
-    }
-
-    .text-danger {
-        color: #dc3545;
-        font-size: 0.9rem;
-        margin-top: 5px;
-        display: block;
-    }
-</style>
+<head>
+    <link href="~/css/Reviews.css" rel="stylesheet" />
+</head>
 
 <div class="delete-review-container">
     <h1 class="form-heading">Delete Review for: <strong>@Model.Review.BookTitle</strong></h1>
@@ -139,7 +38,6 @@
         </dl>
     </div>
 
-    <!-- Delete Confirmation Form -->
     <form method="post">
         <input type="hidden" asp-for="Review.ReviewId" />
         <div class="form-group mb-3">
@@ -149,7 +47,6 @@
         </div>
     </form>
 
-    <!-- Back Link -->
     <div class="back-link">
         <a href="@Url.Page("Index")">
             <i class="fas fa-arrow-left"></i>Back to Review List
@@ -159,4 +56,5 @@
 
 @section Scripts {
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="~/js/Reviews.js"></script>
 }
