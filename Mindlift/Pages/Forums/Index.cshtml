@@ -1,201 +1,53 @@
 ﻿@page
 @model Mindlift.Pages.Forums.IndexModel
- 
+
 @{
     ViewData["Title"] = "Forums";
 }
- 
+
 @section Styles {
-<style>
-        body {
-            background-color: #f8f9fa;
-        }
- 
-        .forum-container {
-            margin-top: 30px;
-            margin-bottom: 50px;
-        }
- 
-        .page-title {
-            color: #5d4037;
-            font-weight: 600;
-            margin-bottom: 30px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
- 
-        .forum-card {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            background-color: #fff3e6; /* Soft background color */
-            margin-bottom: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
- 
-        .forum-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 15px rgba(216, 84, 58, 0.1);
-        }
- 
-        .forum-title {
-            font-weight: 600;
-            color: #5d4037;
-            margin-bottom: 10px;
-        }
- 
-        .forum-description {
-            color: #5d4037;
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            line-height: 1.5;
-        }
- 
-        .forum-date {
-            color: #886d65;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
- 
-        .card-body {
-            padding: 20px;
-        }
- 
-        .card-footer {
-            background-color: #ffccbc;
-            border-top: none;
-            padding: 15px;
-        }
- 
-        .btn-create {
-            background-color: #d8543a;
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            margin-bottom: 30px;
-        }
- 
-        .btn-create:hover {
-            background-color: #c14836;
-            color: white;
-        }
- 
-        .btn-action {
-            background-color: transparent;
-            color: #d8543a;
-            border: 1px solid #d8543a;
-            margin: 0 5px;
-            padding: 5px 15px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
- 
-        .btn-action:hover {
-            background-color: #d8543a;
-            color: white;
-        }
- 
-        .btn-delete {
-            border-color: #dc3545;
-            color: #dc3545;
-        }
- 
-        .btn-delete:hover {
-            background-color: #dc3545;
-            color: white;
-        }
-</style>
+    <link rel="stylesheet" href="~/css/Forums.css" />
 }
- 
+
 <div class="container forum-container">
-<h2 class="text-center page-title">Forums</h2>
- 
+    <h2 class="text-center page-title">Forums</h2>
+
     <div class="text-center">
-<a asp-page="Create" class="btn btn-create">
-<i class="fas fa-plus-circle me-2"></i>Create New Forum
-</a>
-</div>
- 
+        <a asp-page="Create" class="btn btn-create">
+            <i class="fas fa-plus-circle me-2"></i>Create New Forum
+        </a>
+    </div>
+
     <div class="row">
         @foreach (var forum in Model.Forum)
         {
-<div class="col-md-4">
-<div class="card forum-card">
-<div class="card-body">
-<h5 class="forum-title">@forum.Title</h5>
-<p class="forum-description">@forum.Description</p>
-<p class="forum-date">
-<i class="far fa-calendar-alt me-2"></i>
+            <div class="col-md-4">
+                <div class="card forum-card">
+                    <div class="card-body">
+                        <h5 class="forum-title">@forum.Title</h5>
+                        <p class="forum-description">@forum.Description</p>
+                        <p class="forum-date">
+                            <i class="far fa-calendar-alt me-2"></i>
                             @(forum.Created is DateTime createdDate ? createdDate.ToString("MMMM dd, yyyy") : forum.Created.ToString())
-</p>
-</div>
-<div class="card-footer text-center">
-<a asp-page="./Edit" asp-route-id="@forum.Id" class="btn btn-action">
-<i class="fas fa-edit me-1"></i>Edit
-</a>
-<a asp-page="./Delete" asp-route-id="@forum.Id" class="btn btn-action btn-delete">
-<i class="fas fa-trash-alt me-1"></i>Delete
-</a>
-<a asp-page="/Posts/Index" asp-route-forumId="@forum.Id" class="btn btn-action">
-<i class="fas fa-comments me-1"></i>View Posts
-</a>
-</div>
-</div>
-</div>
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a asp-page="./Edit" asp-route-id="@forum.Id" class="btn btn-action">
+                            <i class="fas fa-edit me-1"></i>Edit
+                        </a>
+                        <a asp-page="./Delete" asp-route-id="@forum.Id" class="btn btn-action btn-delete">
+                            <i class="fas fa-trash-alt me-1"></i>Delete
+                        </a>
+                        <a asp-page="/Posts/Index" asp-route-forumId="@forum.Id" class="btn btn-action">
+                            <i class="fas fa-comments me-1"></i>View Posts
+                        </a>
+                    </div>
+                </div>
+            </div>
         }
+    </div>
 </div>
-</div>
- 
+
 @section Scripts {
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const title = document.querySelector('.page-title');
-            const cards = document.querySelectorAll('.forum-card');
- 
-            // Animate title
-            setTimeout(() => {
-                title.style.opacity = '1';
-                title.style.transform = 'translateY(0)';
-            }, 300);
- 
-            // Animate cards
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 500 + (index * 100));
-            });
- 
-            // Function to check if element is in viewport
-            function isInViewport(element) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-                );
-            }
- 
-            // Animate cards on scroll
-            function handleScroll() {
-                cards.forEach(card => {
-                    if (isInViewport(card)) {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }
-                });
-            }
- 
-            window.addEventListener('scroll', handleScroll);
-        });
-</script>
+    <script src="~/js/Forums.js"></script>
 }
-    </tbody>
-</table>

@@ -3,89 +3,18 @@
 
 @{
     ViewData["Title"] = "Forum Details";
-    var forum = Model.Forum;  <!-- Ensure you're accessing Forum property correctly -->
+    var forum = Model.Forum;
 }
 
-@section Styles {
-    <style>
-        /* General Styles */
-        .details-container {
-            margin-top: 30px;
-            margin-bottom: 50px;
-        }
-
-        .forum-title {
-            color: #1890ff;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .forum-description {
-            color: #1890ff;
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: 30px;
-        }
-
-        .forum-date {
-            color: #1a76d2;
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-        }
-
-        .btn-action {
-            background-color: transparent;
-            color: #1890ff;
-            border: 1px solid #1890ff;
-            margin-right: 10px;
-            padding: 5px 15px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-action:hover {
-            background-color: #1890ff;
-            color: white;
-        }
-
-        .btn-back {
-            color: #1890ff;
-            font-size: 1rem;
-        }
-
-        .btn-back:hover {
-            text-decoration: underline;
-        }
-
-        .page-title {
-            color: #1890ff;
-            font-weight: 600;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .card {
-            background-color: #e6f7ff;
-            border-radius: 10px;
-            box-shadow: 0 8px 15px rgba(24, 144, 255, 0.1);
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        /* Mobile responsiveness */
-        
-    </style>
-}
-}
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/Forums.css" />
+</head>
 
 <div class="container details-container">
     <h2 class="text-center page-title">Forum Details</h2>
 
     <div class="card">
-        <h4 class="forum-title">@forum.Title</h4> <!-- Use 'forum' variable directly -->
+        <h4 class="forum-title">@forum.Title</h4>
         <p class="forum-description">@forum.Description</p>
         <p class="forum-date">
             <i class="far fa-calendar-alt me-2"></i>
@@ -116,13 +45,11 @@
             const title = document.querySelector('.page-title');
             const card = document.querySelector('.card');
 
-            // Animate title
             setTimeout(() => {
                 title.style.opacity = '1';
                 title.style.transform = 'translateY(0)';
             }, 300);
 
-            // Animate card
             setTimeout(() => {
                 card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
