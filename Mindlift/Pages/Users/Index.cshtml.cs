@@ -21,9 +21,5 @@ namespace Mindlift.Pages.Users
 
         public IList<User> User { get;set; } = default!;
 
-        public async Task OnGetAsync()
-        {
-            User = await _context.User.ToListAsync();
-        }
     }
 }

@@ -1,16 +1,14 @@
 ﻿@page
 @model Mindlift.Pages.Forums.DetailsModel
 
-@page "{id:int}"
-@model Mindlift.Models.Forum
-
 @{
     ViewData["Title"] = "Forum Details";
-    var forum = Model;
+    var forum = Model.Forum;  <!-- Ensure you're accessing Forum property correctly -->
 }
 
 @section Styles {
     <style>
+        /* General Styles */
         .details-container {
             margin-top: 30px;
             margin-bottom: 50px;
@@ -45,22 +43,19 @@
             transition: all 0.3s ease;
         }
 
-            .btn-action:hover {
-                background-color: #1890ff;
-                color: white;
-            }
-    </style>
-</head>
-<body>
+        .btn-action:hover {
+            background-color: #1890ff;
+            color: white;
+        }
 
         .btn-back {
             color: #1890ff;
             font-size: 1rem;
         }
 
-            .btn-back:hover {
-                text-decoration: underline;
-            }
+        .btn-back:hover {
+            text-decoration: underline;
+        }
 
         .page-title {
             color: #1890ff;
@@ -79,22 +74,33 @@
             transform: translateY(20px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
+
+        /* Mobile responsiveness */
+        
     </style>
+}
 }
 
 <div class="container details-container">
     <h2 class="text-center page-title">Forum Details</h2>
 
     <div class="card">
-        <h4 class="forum-title">@Model.Forum.Title</h4>
-        <p class="forum-description">@Model.Forum.Description</p>
+        <h4 class="forum-title">@forum.Title</h4> <!-- Use 'forum' variable directly -->
+        <p class="forum-description">@forum.Description</p>
         <p class="forum-date">
             <i class="far fa-calendar-alt me-2"></i>
-            @(Model.Forum.Created is DateTime createdDate ? createdDate.ToString("MMMM dd, yyyy") : Model.Forum.Created.ToString())
+            @if (forum.Created is DateTime createdDate)
+            {
+                @createdDate.ToString("MMMM dd, yyyy")
+            }
+            else
+            {
+                @forum.Created.ToString()
+            }
         </p>
 
         <div class="text-center">
-            <a asp-page="./Edit" asp-route-id="@Model.Forum.Id" class="btn btn-action">
+            <a asp-page="./Edit" asp-route-id="@forum.Id" class="btn btn-action">
                 <i class="fas fa-edit me-1"></i>Edit Forum
             </a>
             <a asp-page="./Index" class="btn btn-back">

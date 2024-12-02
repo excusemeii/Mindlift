@@ -35,7 +35,6 @@ namespace Mindlift.Pages.Users
                 return Page();
             }
 
-            _context.User.Add(User);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

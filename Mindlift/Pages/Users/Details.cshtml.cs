@@ -21,23 +21,6 @@ namespace Mindlift.Pages.Users
 
         public User User { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _context.User.FirstOrDefaultAsync(m => m.UserID == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                User = user;
-            }
-            return Page();
-        }
+        
     }
 }

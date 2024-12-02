@@ -30,12 +30,6 @@ namespace Mindlift.Pages.Users
                 return NotFound();
             }
 
-            var user =  await _context.User.FirstOrDefaultAsync(m => m.UserID == id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            User = user;
             return Page();
         }
 
@@ -50,28 +44,10 @@ namespace Mindlift.Pages.Users
 
             _context.Attach(User).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(User.UserID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            
 
             return RedirectToPage("./Index");
         }
 
-        private bool UserExists(int id)
-        {
-            return _context.User.Any(e => e.UserID == id);
-        }
     }
 }

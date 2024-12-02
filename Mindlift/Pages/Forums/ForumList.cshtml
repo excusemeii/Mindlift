@@ -49,21 +49,6 @@
 
     <h1>@ViewData["Title"]</h1>
 
-    <ul class="forum-list">
-        @foreach (var forum in Model)
-        {
-            <li class="forum-item">
-                <div>
-                    <h3>@forum.ForumName</h3>
-                    <p class="forum-count">@forum.Users?.Count() ?? 0 Users</p>
-                </div>
-                <a href="@Url.Page("ForumDetails", new { id = forum.Id })">
-                    <i class="fas fa-arrow-right"></i> View Forum
-                </a>
-            </li>
-        }
-    </ul>
-
 </body>
 </html>
 
