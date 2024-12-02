@@ -107,7 +107,7 @@
                     <td>@post.Content</td>
                     <td>@(post.Created is DateTime createdDate ? createdDate.ToString("MMMM dd, yyyy") : post.Created.ToString())</td>
                     <td class="action-buttons">
-                        <a asp-page="./Edit" asp-route-id="@post.Id" asp-route-forumId="@Model.Forum.Id" class="btn btn-outline-primary btn-sm">Edit</a>
+                        
                         <a asp-page="./Delete" asp-route-id="@post.Id" asp-route-forumId="@Model.Forum.Id" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>
                 </tr>
