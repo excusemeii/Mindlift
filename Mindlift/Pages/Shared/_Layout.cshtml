@@ -1,50 +1,101 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@ViewData["Title"] - Mindlift</title>
-
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Mindlift.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff3e6;
+            color: #5d4037;
+        }
+
+        .navbar {
+            background-color: #ffccbc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand, .nav-link {
+            color: #d8543a !important;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .footer {
+            background-color: #ffab91;
+            color: #5d4037;
+            padding: 10px 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .btn-danger {
+            background-color: #d8543a;
+            border-color: #d8543a;
+        }
+
+            .btn-danger:hover {
+                background-color: #c14836;
+                border-color: #c14836;
+            }
+
+        /* Chatbot Custom Styling */
+        #dify-chatbot-bubble-button {
+            background-color: #1C64F2 !important;
+        }
+
+        #dify-chatbot-bubble-window {
+            width: 24rem !important;
+            height: 40rem !important;
+        }
+    </style>
 
     @await RenderSectionAsync("Styles", required: false)
 </head>
-
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index" title="Mindlift - Home">Mindlift</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Mindlift</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Index" title="Home">Home</a>
+                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Libraries/Index" title="Books">Books</a>
+                            <a class="nav-link" asp-area="" asp-page="/Reviews/Index">Reviews</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Videos/Index" title="Videos">Videos</a>
+                            <a class="nav-link" asp-area="" asp-page="/Forums/Index">Forums</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Reviews/Index" title="Reviews">Reviews</a>
+                            <a class="nav-link" asp-area="" asp-page="/Videos/Index">Videos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Forums/Index" title="Forums">Forums</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/DogBreed" title="Furry Companions">Furry Companions</a>
+                            <a class="nav-link" asp-area="" asp-page="/Libraries/Index">Libraries</a>
                         </li>
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
@@ -58,13 +109,34 @@
 
     <footer class="border-top footer text-muted">
         <div class="container text-center">
-            &copy; 2024 - Mindlift - <a asp-area="" asp-page="/Privacy" title="Privacy Policy">Privacy</a>
+            &copy; 2024 - Mindlift - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
+
+    <!-- Dify Chatbot Integration -->
+    <script>
+        window.difyChatbotConfig = {
+            token: 'AAqIyAwc8UACvJYv', // Replace with actual chatbot token
+            baseUrl: 'http://localhost' // Change if using a custom deployment
+        };
+    </script>
+    <script src="http://localhost/embed.min.js" id="AAqIyAwc8UACvJYv" defer></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Ensure chatbot initializes properly
+            if (window.difyChatbot) {
+                console.log("Dify chatbot initialized successfully.");
+            } else {
+                console.error("Dify chatbot failed to load. Check your token and baseUrl.");
+            }
+        });
+    </script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
