@@ -1,0 +1,117 @@
+﻿@page
+@model Mindlift.Pages.DogBreedModel
+@{
+    ViewData["Title"] = "Explore Breeds";
+}
+
+@section Styles {
+    <style>
+        .search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .search-container input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #1890ff;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .search-container input[type="text"]:focus {
+            box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
+            border-color: #1890ff;
+        }
+
+        .search-container button {
+            background-color: #1890ff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-container button:hover {
+            background-color: #106bce;
+        }
+
+        .table-container {
+            margin: 30px auto;
+            width: 80%;
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #d9d9d9;
+        }
+
+        .table th {
+            background-color: #1890ff;
+            color: white;
+        }
+
+        .table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .no-results {
+            text-align: center;
+            font-size: 1.2em;
+            color: #595959;
+            margin-top: 20px;
+        }
+    </style>
+}
+
+<div class="search-container">
+    <h1>Search Dog Breeds</h1>
+    <form method="get">
+        <input type="text" name="searchTerm" placeholder="Enter breed name" value="@Model.SearchTerm" />
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<div class="table-container">
+    <h1 class="text-center">Explore Dog Breeds</h1>
+    @if (Model.DogBreeds == null || !Model.DogBreeds.Any())
+    {
+        <p class="no-results">No breeds found.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Group</th>
+                    <th>Description</th>
+                    <th>Popularity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var breed in Model.DogBreeds)
+                {
+                    <tr>
+                        <td><a href="/DogDetails/@breed.General.Name">@breed.General.Name</a></td>
+                        <td>@breed.General.Group</td>
+                        <td>@breed.General.ShortDescription</td>
+                        <td>@breed.General.Popularity</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

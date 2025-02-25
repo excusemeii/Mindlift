@@ -1,0 +1,81 @@
+﻿@page
+@model Mindlift.Pages.Libraries.IndexModel
+
+@{
+    ViewData["Title"] = "Top Books";
+}
+
+
+<link rel="stylesheet" href="~/css/Libraries.css" />
+
+<div class="container library-container">
+    <h2 class="text-center page-title">Top Books</h2>
+
+   
+    <div class="text-center mb-4">
+        <form method="get" class="d-flex justify-content-center">
+            <div class="input-group w-75">
+                <input type="text" id="searchQuery" name="searchQuery" class="form-control" placeholder="Enter a book title, author, etc." value="@Request.Query["searchQuery"]" />
+                <button type="submit" class="btn btn-search"><i class="fas fa-search"></i> Search</button>
+            </div>
+        </form>
+    </div>
+
+    
+    <div class="row mt-3">
+        @if (Model.ExternalBooks != null && Model.ExternalBooks.Any())
+        {
+            @foreach (var book in Model.ExternalBooks)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card book-card h-100">
+                        <!-- Book Cover -->
+                        <div class="card-img-top">
+                            @if (!string.IsNullOrEmpty(book.ISBN))
+                            {
+                                <img src="https://covers.openlibrary.org/b/isbn/@book.ISBN-L.jpg" alt="Book Cover" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">No cover available</span>
+                            }
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@book.Title</h5>
+                            <p class="card-text">@book.Author ?? "Unknown Author"</p>
+                            <p class="text-small">
+                                <strong>Rating:</strong>
+                                @if (book.RatingsAverage.HasValue)
+                                {
+                                    @book.RatingsAverage.Value.ToString("N1")
+                                }
+                                else
+                                {
+                                    <span>No ratings</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="alert alert-info mt-4 text-center" role="alert">
+                No books found. Try a different search.
+            </div>
+        }
+    </div>
+
+</div>
+
+
+<footer class="text-center mt-4">
+    <p>&copy; 2024 Mindlift. All rights reserved.</p>
+</footer>
+
+
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+<script src="~/js/Libraries.js"></script>

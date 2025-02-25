@@ -1,0 +1,34 @@
+﻿@page
+@model Mindlift.Pages.PostReplies.EditModel
+
+@{
+    ViewData["Title"] = "Edit Reply";
+}
+
+<h2>Edit Reply to @Model.Post.Title</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            @Html.HiddenFor(m => m.Reply.PostId)
+
+            <div class="form-group">
+                <label asp-for="Reply.Content"></label>
+                <textarea asp-for="Reply.Content" class="form-control"></textarea>
+                <span asp-validation-for="Reply.Content" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index" asp-route-postId="@Model.Reply.PostId">Back to Replies</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -35,7 +35,8 @@ namespace Mindlift.Pages.Forums
                 return Page();
             }
 
-            _context.Forum.Add(Forum);
+            Forum.Created = DateTime.Now;
+            _context.Forums.Add(Forum);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

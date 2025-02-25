@@ -46,6 +46,7 @@ namespace Mindlift.Controllers
             {
                 return BadRequest(ModelState);
             }
+<<<<<<< HEAD
 
             review.ReviewDate = DateTime.Now;
             _context.Review.Add(review);
@@ -54,6 +55,16 @@ namespace Mindlift.Controllers
             return CreatedAtAction(nameof(GetById), new { id = review.ReviewId }, review);
         }
 
+=======
+ 
+            review.ReviewDate = DateTime.Now;
+            _context.Review.Add(review);
+            _context.SaveChanges();
+ 
+            return CreatedAtAction(nameof(GetById), new { id = review.ReviewId }, review);
+        }
+ 
+>>>>>>> 5c77d72fb32b394777423347dda4782a608a3cee
         // PUT: api/Reviews/5
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody] Review updatedReview)
@@ -62,17 +73,26 @@ namespace Mindlift.Controllers
             {
                 return BadRequest("ID mismatch.");
             }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 5c77d72fb32b394777423347dda4782a608a3cee
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 5c77d72fb32b394777423347dda4782a608a3cee
             var existingReview = _context.Review.Find(id);
             if (existingReview == null)
             {
                 return NotFound($"Review with ID {id} not found.");
             }
+<<<<<<< HEAD
 
             existingReview.Rating = updatedReview.Rating;
             existingReview.Comment = updatedReview.Comment;
@@ -84,6 +104,19 @@ namespace Mindlift.Controllers
             return NoContent();
         }
 
+=======
+ 
+            existingReview.Rating = updatedReview.Rating;
+            existingReview.Comment = updatedReview.Comment;
+            existingReview.ReviewDate = DateTime.Now;
+ 
+            _context.Entry(existingReview).State = EntityState.Modified;
+            _context.SaveChanges();
+ 
+            return NoContent();
+        }
+ 
+>>>>>>> 5c77d72fb32b394777423347dda4782a608a3cee
         // DELETE: api/Reviews/5
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
@@ -93,6 +126,7 @@ namespace Mindlift.Controllers
             {
                 return NotFound($"Review with ID {id} not found.");
             }
+<<<<<<< HEAD
 
             _context.Review.Remove(review);
             _context.SaveChanges();
@@ -101,3 +135,13 @@ namespace Mindlift.Controllers
         }*/
     }
 }
+=======
+ 
+            _context.Review.Remove(review);
+            _context.SaveChanges();
+ 
+            return NoContent();
+        }*/
+    }
+}
+>>>>>>> 5c77d72fb32b394777423347dda4782a608a3cee

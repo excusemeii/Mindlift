@@ -2,35 +2,50 @@
 @model Mindlift.Pages.Forums.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Forums";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Forum[0].ForumName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Forum) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ForumName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+@section Styles {
+    <link rel="stylesheet" href="~/css/Forums.css" />
 }
-    </tbody>
-</table>
+
+<div class="container forum-container">
+    <h2 class="text-center page-title">Forums</h2>
+
+    <div class="text-center">
+        <a asp-page="Create" class="btn btn-create">
+            <i class="fas fa-plus-circle me-2"></i>Create New Forum
+        </a>
+    </div>
+
+    <div class="row">
+        @foreach (var forum in Model.Forum)
+        {
+            <div class="col-md-4">
+                <div class="card forum-card">
+                    <div class="card-body">
+                        <h5 class="forum-title">@forum.Title</h5>
+                        <p class="forum-description">@forum.Description</p>
+                        <p class="forum-date">
+                            <i class="far fa-calendar-alt me-2"></i>
+                            @(forum.Created is DateTime createdDate ? createdDate.ToString("MMMM dd, yyyy") : forum.Created.ToString())
+                        </p>
+                    </div>
+                    <div class="card-footer text-center">
+                        
+                        <a asp-page="./Delete" asp-route-id="@forum.Id" class="btn btn-action btn-delete">
+                            <i class="fas fa-trash-alt me-1"></i>Delete
+                        </a>
+                        <a asp-page="/Posts/Index" asp-route-forumId="@forum.Id" class="btn btn-action">
+                            <i class="fas fa-comments me-1"></i>View Posts
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Forums.js"></script>
+}

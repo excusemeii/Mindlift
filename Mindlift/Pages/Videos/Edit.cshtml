@@ -1,0 +1,60 @@
+﻿@page
+@model Mindlift.Pages.Videos.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>YouTubeVideo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="YouTubeVideo.VideoId" />
+            <div class="form-group">
+                <label asp-for="YouTubeVideo.Title" class="control-label"></label>
+                <input asp-for="YouTubeVideo.Title" class="form-control" />
+                <span asp-validation-for="YouTubeVideo.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YouTubeVideo.Description" class="control-label"></label>
+                <input asp-for="YouTubeVideo.Description" class="form-control" />
+                <span asp-validation-for="YouTubeVideo.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YouTubeVideo.ThumbnailUrl" class="control-label"></label>
+                <input asp-for="YouTubeVideo.ThumbnailUrl" class="form-control" />
+                <span asp-validation-for="YouTubeVideo.ThumbnailUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YouTubeVideo.ChannelTitle" class="control-label"></label>
+                <input asp-for="YouTubeVideo.ChannelTitle" class="form-control" />
+                <span asp-validation-for="YouTubeVideo.ChannelTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YouTubeVideo.ViewCount" class="control-label"></label>
+                <input asp-for="YouTubeVideo.ViewCount" class="form-control" />
+                <span asp-validation-for="YouTubeVideo.ViewCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="YouTubeVideo.LikeCount" class="control-label"></label>
+                <input asp-for="YouTubeVideo.LikeCount" class="form-control" />
+                <span asp-validation-for="YouTubeVideo.LikeCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

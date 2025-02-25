@@ -1,0 +1,52 @@
+﻿@page
+@model Mindlift.Pages.Reviews.DetailsModel
+
+@{
+    ViewData["Title"] = "Review Details";
+}
+
+<head>
+    <link href="~/css/Reviews.css" rel="stylesheet" />
+</head>
+
+<div class="details-container">
+    <h1 class="details-title"><strong>@Model.Review.BookTitle</strong></h1>
+
+    <div class="book-image-container">
+        <img src="https://covers.openlibrary.org/b/isbn/9788820030971-L.jpg" alt="Book cover" class="book-image">
+    </div>
+
+    <div class="review-details">
+        <h4 class="details-title">Review Information</h4>
+        <hr />
+        <dl class="row details-section">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Review.Rating)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Review.Rating)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Review.Comment)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Review.Comment)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Review.ReviewDate)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Review.ReviewDate)
+            </dd>
+        </dl>
+    </div>
+
+    <div class="action-buttons">
+        <a asp-page="./Index" class="btn btn-outline-secondary mx-2">Back to List</a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="~/js/Reviews.js"></script> 
+}

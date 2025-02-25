@@ -30,7 +30,7 @@ namespace Mindlift.Pages.Forums
                 return NotFound();
             }
 
-            var forum =  await _context.Forum.FirstOrDefaultAsync(m => m.Id == id);
+            var forum = await _context.Forums.FirstOrDefaultAsync(m => m.Id == id);
             if (forum == null)
             {
                 return NotFound();
@@ -69,9 +69,10 @@ namespace Mindlift.Pages.Forums
             return RedirectToPage("./Index");
         }
 
-        private bool ForumExists(int id)
+        private bool ForumExists(int? id)
         {
-            return _context.Forum.Any(e => e.Id == id);
+            return _context.Forums.Any(e => e.Id == id);
         }
     }
 }
+

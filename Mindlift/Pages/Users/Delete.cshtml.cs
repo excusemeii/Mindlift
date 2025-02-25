@@ -22,39 +22,13 @@ namespace Mindlift.Pages.Users
         [BindProperty]
         public User User { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var user = await _context.User.FirstOrDefaultAsync(m => m.UserID == id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                User = user;
-            }
-            return Page();
-        }
+        
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
-            }
-
-            var user = await _context.User.FindAsync(id);
-            if (user != null)
-            {
-                User = user;
-                _context.User.Remove(User);
-                await _context.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");

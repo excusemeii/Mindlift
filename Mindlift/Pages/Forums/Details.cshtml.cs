@@ -28,7 +28,7 @@ namespace Mindlift.Pages.Forums
                 return NotFound();
             }
 
-            var forum = await _context.Forum.FirstOrDefaultAsync(m => m.Id == id);
+            var forum = await _context.Forums.FirstOrDefaultAsync(m => m.Id == id);
             if (forum == null)
             {
                 return NotFound();

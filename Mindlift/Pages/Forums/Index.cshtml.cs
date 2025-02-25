@@ -23,7 +23,7 @@ namespace Mindlift.Pages.Forums
 
         public async Task OnGetAsync()
         {
-            Forum = await _context.Forum.ToListAsync();
+            Forum = await _context.Forums.ToListAsync();
         }
     }
 }

@@ -1,0 +1,71 @@
+﻿@page
+@model Mindlift.Pages.Reviews.EditModel
+
+@{
+    ViewData["Title"] = "Edit Review";
+}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/Reviews.css" />
+</head>
+
+<div class="edit-review-container">
+    <h1 class="form-heading">Edit Review</h1>
+    <p class="form-subheading">Update your thoughts about the book</p>
+
+    <form method="post">
+        <p class="form-subheading"><strong>@Model.Review.BookTitle</strong></p>
+
+        <input type="hidden" asp-for="Review.ReviewId" />
+
+        <div class="form-group">
+            <label class="form-label">Rating</label>
+            <div class="rating-container">
+                @for (int i = 5; i >= 1; i--)
+
+                {
+                    <input type="radio" id="star@(i)" name="Review.Rating" value="@i"
+                    @(Model.Review.Rating == i ? "checked" : "") />
+                    <label for="star@(i)" title="@i stars">★</label>
+                }
+            </div>
+            <span asp-validation-for="Review.Rating" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="Review.Comment" class="form-label">Your Review</label>
+<textarea asp-for="Review.Comment"
+          class="form-control"
+          placeholder="Share your experience with the book..."
+          rows="4"></textarea>
+            <span asp-validation-for="Review.Comment" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Review.ReviewDate" class="form-label">Review Date</label>
+            <input asp-for="Review.ReviewDate"
+                   class="form-control"
+                   type="date" />
+            <span asp-validation-for="Review.ReviewDate" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn-submit">
+            <i class="fas fa-save me-2"></i>Save Changes
+        </button>
+    </form>
+
+    <div class="back-link">
+        <a asp-page="Index">
+            <i class="fas fa-arrow-left"></i>
+            Back to Reviews
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="~/js/Reviews.js"></script>
+}

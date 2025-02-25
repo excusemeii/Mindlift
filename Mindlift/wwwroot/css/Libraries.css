@@ -1,0 +1,96 @@
+﻿body {
+    background-color: #f8f9fa;
+}
+
+.library-container {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.page-title {
+    color: #5d4037;
+    font-weight: 600;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.book-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #fff3e6;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+    .book-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 15px rgba(216, 84, 58, 0.1);
+    }
+
+.card-img-top {
+    height: 250px;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .card-img-top img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+.card-title {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #5d4037;
+}
+
+.text-muted {
+    color: #777;
+}
+
+.text-small {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.btn-search {
+    background-color: #d8543a;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-search:hover {
+        background-color: #c14836;
+        color: white;
+    }
+
+.alert-info {
+    background-color: #fff3e6;
+    color: #5d4037;
+    font-weight: 600;
+}
+
+footer {
+    font-size: 14px;
+    color: #aaa;
+}
